@@ -1,0 +1,347 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:ds="http://purl.org/dpn/dataset#"
+    xmlns:msm="http://iserve.kmi.open.ac.uk/ns/msm#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:dc="http://purl.org/dc/terms/"
+    xmlns:dpn="http://purl.org/dpn#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:wl="http://www.wsmo.org/ns/wsmo-lite#"
+    xmlns:hr="http://www.wsmo.org/ns/hrests#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://purl.org/dpn">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
+    <owl:imports rdf:resource="http://iserve.kmi.open.ac.uk/ns/hrests"/>
+    <owl:imports rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos"/>
+    <owl:imports rdf:resource="http://purl.org/dpn/dataset"/>
+  </owl:Ontology>
+  <rdfs:Class rdf:about="http://www.wsmo.org/ns/wsmo-lite#FunctionalClassificationRoot">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+  </rdfs:Class>
+  <owl:Class rdf:ID="InfoModelServiceInterface">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ServiceInterface"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SISSVocServiceNarrowerConcept">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SISSVocServiceConcept"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SISSVocServiceBroaderConcept">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SISSVocServiceConcept"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="WFS">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="DataServiceInterface"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Web Feature Service</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="MetadataServiceInterface">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#ServiceInterface"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SISSVocServiceBroaderTransitiveConcept">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SISSVocServiceConcept"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="CSW">
+    <rdfs:subClassOf rdf:resource="#MetadataServiceInterface"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Catalogue Service for the Web</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="LinkedDataApiOperation">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class>
+            <owl:oneOf rdf:parseType="Collection">
+              <wl:Message rdf:ID="Html"/>
+              <wl:Message rdf:ID="JSON"/>
+              <wl:Message rdf:ID="RDF"/>
+              <wl:Message rdf:ID="XML"/>
+            </owl:oneOf>
+          </owl:Class>
+        </owl:someValuesFrom>
+        <owl:onProperty rdf:resource="http://www.wsmo.org/ns/wsmo-lite#hasOutputMessage"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.wsmo.org/ns/wsmo-lite#Operation"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Node">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#ServiceInterface"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="providesServiceInterface"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.wsmo.org/ns/wsmo-lite#Service"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="exposesService"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Data provider node</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="PromsServiceInterface">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="ProvenanceServiceInterface"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#SISSVocServiceConcept">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="SISSVocService"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >List of SKOS Concepts Service Endpoint</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="WCS">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#DataServiceInterface"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Web Coverage Service</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="SISSVocServiceNarrowerTransitiveConcept">
+    <rdfs:subClassOf rdf:resource="#SISSVocServiceConcept"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SOS">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#DataServiceInterface"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Sensor Observation Service</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="OpenDAP">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#DataServiceInterface"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#ServiceInterface">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.wsmo.org/ns/wsmo-lite#Service"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="hasImplementation"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Service Interface Standard</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="SISSVocServiceResource">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SISSVocService"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SISSVocServiceCollection">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SISSVocService"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="MapServer">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:ID="WMS"/>
+        </owl:someValuesFrom>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="implements"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.wsmo.org/ns/wsmo-lite#Service"/>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >MapServer</rdfs:label>
+  </owl:Class>
+  <owl:Class rdf:ID="PIDService">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.wsmo.org/ns/wsmo-lite#Service"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="HTTP">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#DataServiceInterface"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="SISSVocServiceInterface">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="VocabularyServiceInterface"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#DataServiceInterface">
+    <rdfs:subClassOf rdf:resource="#ServiceInterface"/>
+  </owl:Class>
+  <owl:Class rdf:ID="SISSVocServiceConceptScheme">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#SISSVocService"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="GeoNetwork">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#CSW"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#implements"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.wsmo.org/ns/wsmo-lite#Service"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="FeatureTypeCatalogue">
+    <rdfs:subClassOf rdf:resource="#InfoModelServiceInterface"/>
+  </owl:Class>
+  <owl:Class rdf:ID="THREDDS">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#WCS"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#implements"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.wsmo.org/ns/wsmo-lite#Service"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#VocabularyServiceInterface">
+    <rdfs:subClassOf rdf:resource="#ServiceInterface"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.wsmo.org/ns/wsmo-lite#Service">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="serviceEndpoint"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="catalogEndpoint"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#ServiceInterface"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#implements"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >WSMO Lite service description</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#serviceEndpoint"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#ServiceInterface"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#implements"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#ProvenanceServiceInterface">
+    <rdfs:subClassOf rdf:resource="#ServiceInterface"/>
+  </owl:Class>
+  <owl:Class rdf:ID="GeoServer">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#WFS"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="#implements"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.wsmo.org/ns/wsmo-lite#Service"/>
+  </owl:Class>
+  <owl:Class rdf:about="#SISSVocService">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.wsmo.org/ns/wsmo-lite#hasOperation"/>
+        <owl:allValuesFrom rdf:resource="#LinkedDataApiOperation"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.wsmo.org/ns/wsmo-lite#Service"/>
+  </owl:Class>
+  <owl:Class rdf:about="#WMS">
+    <rdfs:subClassOf rdf:resource="#DataServiceInterface"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Web Mapping Service</rdfs:label>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="#implements">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="#hasImplementation"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#serviceEndpoint">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >service endpoint</rdfs:label>
+    <rdfs:domain rdf:resource="http://www.wsmo.org/ns/wsmo-lite#Service"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Property to associate a service with a resolvable endpoint. Preferably to a catalog or a GetCapabilities description.</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasImplementation">
+    <owl:inverseOf rdf:resource="#implements"/>
+    <rdfs:range rdf:resource="http://www.wsmo.org/ns/wsmo-lite#Service"/>
+    <rdfs:domain rdf:resource="#ServiceInterface"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hostsDataset">
+    <rdfs:range rdf:resource="http://purl.org/dpn/dataset#Dataset"/>
+    <rdfs:domain rdf:resource="http://www.wsmo.org/ns/wsmo-lite#Service"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#providesServiceInterface">
+    <rdfs:range rdf:resource="#ServiceInterface"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#catalogEndpoint">
+    <rdfs:domain rdf:resource="http://www.wsmo.org/ns/wsmo-lite#Service"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Service may have a catalog entry, from which datasets or operations may be discovered</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#exposesService">
+    <rdfs:range rdf:resource="http://www.wsmo.org/ns/wsmo-lite#Service"/>
+  </owl:ObjectProperty>
+  <owl:NamedIndividual rdf:ID="NetcdfSubset">
+    <rdfs:subClassOf rdf:resource="#DataServiceInterface"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </owl:NamedIndividual>
+  <msm:MessageContent rdf:ID="MessageContent_1"/>
+  <wl:Operation rdf:ID="Operation_1"/>
+</rdf:RDF>
+
+<!-- Created with TopBraid -->

@@ -1,0 +1,390 @@
+# baseURI: http://csiro.au/def/dpn-ontology/
+# imports: http://iserve.kmi.open.ac.uk/ns/hrests/hrests-2013-10-03.rdf
+# imports: http://www.wsmo.org/ns/wsmo-lite/index.rdfxml
+# imports: http://environment.data.gov.au/water/quality/def/op
+# imports: http://iserve.kmi.open.ac.uk/ns/msm#
+# imports: http://purl.org/dc/terms/
+# imports: http://www.w3.org/2003/01/geo/wgs84_pos
+# imports: http://www.w3.org/2004/02/skos/core
+
+@prefix :        <http://csiro.au/def/dpn-ontology/> .
+@prefix dc:      <http://purl.org/dc/terms/> .
+@prefix dpn:     <http://csiro.au/def/dpn-ontology/> .
+@prefix hr:      <http://www.wsmo.org/ns/hrests#> .
+@prefix msm:     <http://iserve.kmi.open.ac.uk/ns/msm#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wl:      <http://www.wsmo.org/ns/wsmo-lite#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+dpn:  rdf:type owl:Ontology ;
+      owl:imports <http://environment.data.gov.au/water/quality/def/op> , dc: , <http://www.w3.org/2004/02/skos/core> , msm: , <http://www.w3.org/2003/01/geo/wgs84_pos> , 
+          <http://iserve.kmi.open.ac.uk/ns/hrests/hrests-2013-10-03.rdf> , <http://www.wsmo.org/ns/wsmo-lite/index.rdfxml> .
+
+dpn:BoundingBox
+      rdf:type owl:Class ;
+      rdfs:label "Bounding box"^^xsd:string ;
+      rdfs:subClassOf <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty dpn:bbBottomRight ;
+                owl:someValuesFrom <http://www.w3.org/2003/01/geo/wgs84_pos#Point>
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty dpn:bbTopLeft ;
+                owl:someValuesFrom <http://www.w3.org/2003/01/geo/wgs84_pos#Point>
+              ] .
+
+dpn:CSW
+      rdf:type owl:Class ;
+      rdfs:label "Catalogue Service for the Web"^^xsd:string ;
+      rdfs:subClassOf dpn:MetadataServiceInterface .
+
+dpn:DataServiceInterface
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:ServiceInterface .
+
+dpn:Dataset
+      rdf:type owl:Class ;
+      rdfs:subClassOf owl:Thing ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:allValuesFrom dpn:Observation ;
+                owl:onProperty dpn:relatedObservationType
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty dpn:spatial ;
+                owl:someValuesFrom <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing>
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty dpn:temporal ;
+                owl:someValuesFrom dpn:TimeInterval
+              ] ;
+      owl:equivalentClass <http://www.w3.org/ns/dcat#Dataset> .
+
+dpn:FeatureTypeCatalogue
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:InfoModelServiceInterface .
+
+dpn:GeoNetwork
+      rdf:type owl:Class ;
+      rdfs:subClassOf wl:Service ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty dpn:implements ;
+                owl:someValuesFrom dpn:CSW
+              ] .
+
+dpn:GeoServer
+      rdf:type owl:Class ;
+      rdfs:subClassOf wl:Service ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty dpn:implements ;
+                owl:someValuesFrom dpn:WFS
+              ] .
+
+dpn:HTTP
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:DataServiceInterface .
+
+dpn:Html
+      rdf:type wl:Message .
+
+dpn:InfoModelServiceInterface
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:ServiceInterface .
+
+dpn:JSON
+      rdf:type wl:Message .
+
+dpn:LinkedDataApiOperation
+      rdf:type owl:Class ;
+      rdfs:subClassOf wl:Operation ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty wl:hasOutputMessage ;
+                owl:someValuesFrom
+                        [ rdf:type owl:Class ;
+                          owl:oneOf (dpn:Html dpn:JSON dpn:RDF dpn:XML)
+                        ]
+              ] .
+
+dpn:MapServer
+      rdf:type owl:Class ;
+      rdfs:label "MapServer"^^xsd:string ;
+      rdfs:subClassOf wl:Service ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty dpn:implements ;
+                owl:someValuesFrom dpn:WMS
+              ] .
+
+dpn:MessageContent_1
+      rdf:type msm:MessageContent .
+
+dpn:MetadataServiceInterface
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:ServiceInterface .
+
+dpn:NetcdfSubset
+      rdf:type owl:NamedIndividual , owl:Class ;
+      rdfs:subClassOf dpn:DataServiceInterface .
+
+dpn:Node
+      rdf:type owl:Class ;
+      rdfs:label "Data provider node"^^xsd:string ;
+      rdfs:subClassOf owl:Thing ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty dpn:providesServiceInterface ;
+                owl:someValuesFrom dpn:ServiceInterface
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty dpn:exposesService ;
+                owl:someValuesFrom wl:Service
+              ] .
+
+dpn:Observation
+      rdf:type rdfs:Class ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty dpn:relatedFeature ;
+                owl:someValuesFrom rdfs:Resource
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty dpn:relatedSubstanceOrTaxon ;
+                owl:someValuesFrom <http://environment.data.gov.au/water/quality/def/op#SubstanceOrTaxon>
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty dpn:relatedQuantityKind ;
+                owl:someValuesFrom <http://environment.data.gov.au/water/quality/def/op#ScaledQuantityKind>
+              ] .
+
+dpn:OpenDAP
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:DataServiceInterface .
+
+dpn:Operation_1
+      rdf:type wl:Operation .
+
+dpn:PIDService
+      rdf:type owl:Class ;
+      rdfs:subClassOf wl:Service .
+
+dpn:PromsServiceInterface
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:ProvenanceServiceInterface .
+
+dpn:ProvenanceServiceInterface
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:ServiceInterface .
+
+dpn:RDF
+      rdf:type wl:Message .
+
+dpn:SISSVocService
+      rdf:type owl:Class ;
+      rdfs:subClassOf wl:Service ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:allValuesFrom dpn:LinkedDataApiOperation ;
+                owl:onProperty wl:hasOperation
+              ] .
+
+dpn:SISSVocServiceBroaderConcept
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:SISSVocServiceConcept .
+
+dpn:SISSVocServiceBroaderTransitiveConcept
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:SISSVocServiceConcept .
+
+dpn:SISSVocServiceCollection
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:SISSVocService .
+
+dpn:SISSVocServiceConcept
+      rdf:type owl:Class ;
+      rdfs:label "List of SKOS Concepts Service Endpoint"^^xsd:string ;
+      rdfs:subClassOf dpn:SISSVocService .
+
+dpn:SISSVocServiceConceptScheme
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:SISSVocService .
+
+dpn:SISSVocServiceInterface
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:VocabularyServiceInterface .
+
+dpn:SISSVocServiceNarrowerConcept
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:SISSVocServiceConcept .
+
+dpn:SISSVocServiceNarrowerTransitiveConcept
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:SISSVocServiceConcept .
+
+dpn:SISSVocServiceResource
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:SISSVocService .
+
+dpn:SOS
+      rdf:type owl:Class ;
+      rdfs:label "Sensor Observation Service"^^xsd:string ;
+      rdfs:subClassOf dpn:DataServiceInterface .
+
+dpn:ServiceInterface
+      rdf:type owl:Class ;
+      rdfs:label "Service Interface Standard"^^xsd:string ;
+      rdfs:subClassOf owl:Thing ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty dpn:hasImplementation ;
+                owl:someValuesFrom wl:Service
+              ] .
+
+dpn:THREDDS
+      rdf:type owl:Class ;
+      rdfs:subClassOf wl:Service ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty dpn:implements ;
+                owl:someValuesFrom dpn:WCS
+              ] .
+
+dpn:TimeInterval
+      rdf:type rdfs:Class ;
+      rdfs:label "Time interval"^^xsd:string ;
+      rdfs:subClassOf dc:PeriodOfTime .
+
+dpn:VocabularyServiceInterface
+      rdf:type owl:Class ;
+      rdfs:subClassOf dpn:ServiceInterface .
+
+dpn:WCS
+      rdf:type owl:Class ;
+      rdfs:label "Web Coverage Service"^^xsd:string ;
+      rdfs:subClassOf dpn:DataServiceInterface .
+
+dpn:WFS
+      rdf:type owl:Class ;
+      rdfs:label "Web Feature Service"^^xsd:string ;
+      rdfs:subClassOf dpn:DataServiceInterface .
+
+dpn:WMS
+      rdf:type owl:Class ;
+      rdfs:label "Web Mapping Service"^^xsd:string ;
+      rdfs:subClassOf dpn:DataServiceInterface .
+
+dpn:XML
+      rdf:type wl:Message .
+
+dpn:bbBottomRight
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+      rdfs:label "bb bottom right"^^xsd:string ;
+      rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#Point> .
+
+dpn:bbTopLeft
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+      rdfs:label "bb top left"^^xsd:string ;
+      rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#Point> .
+
+dpn:catalogEndpoint
+      rdf:type owl:ObjectProperty ;
+      rdfs:comment "Service may have a catalog entry, from which datasets or operations may be discovered"^^xsd:string ;
+      rdfs:domain wl:Service .
+
+dpn:end
+      rdf:type owl:DatatypeProperty ;
+      rdfs:label "end"^^xsd:string ;
+      rdfs:range xsd:dateTime .
+
+dpn:exposesService
+      rdf:type owl:ObjectProperty ;
+      rdfs:range wl:Service .
+
+dpn:hasImplementation
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain dpn:ServiceInterface ;
+      rdfs:range wl:Service ;
+      owl:inverseOf dpn:implements .
+
+dpn:hostsDataset
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain wl:Service ;
+      rdfs:range dpn:Dataset .
+
+dpn:implements
+      rdf:type owl:ObjectProperty ;
+      owl:inverseOf dpn:hasImplementation .
+
+dpn:providesServiceInterface
+      rdf:type owl:ObjectProperty ;
+      rdfs:range dpn:ServiceInterface .
+
+dpn:relatedFeature
+      rdf:type owl:ObjectProperty ;
+      rdfs:label "Related Feature Of Interest that the dataset describes"^^xsd:string .
+
+dpn:relatedObservationType
+      rdf:type owl:ObjectProperty ;
+      rdfs:range dpn:Observation .
+
+dpn:relatedQuantityKind
+      rdf:type owl:ObjectProperty ;
+      rdfs:label "Related Quantity Kind that the dataset describes"^^xsd:string .
+
+dpn:relatedSubstanceOrTaxon
+      rdf:type owl:ObjectProperty ;
+      rdfs:label "Related Substance of Taxon that the dataset describes"^^xsd:string .
+
+dpn:serviceEndpoint
+      rdf:type owl:ObjectProperty ;
+      rdfs:comment "Property to associate a service with a resolvable endpoint. Preferably to a catalog or a GetCapabilities description."^^xsd:string ;
+      rdfs:domain wl:Service ;
+      rdfs:label "service endpoint"^^xsd:string .
+
+dpn:spatial
+      rdf:type owl:ObjectProperty ;
+      rdfs:label "spatial"^^xsd:string ;
+      rdfs:range dpn:BoundingBox ;
+      rdfs:subPropertyOf dc:spatial .
+
+dpn:start
+      rdf:type owl:DatatypeProperty ;
+      rdfs:label "start"^^xsd:string ;
+      rdfs:range xsd:dateTime .
+
+dpn:temporal
+      rdf:type owl:ObjectProperty ;
+      rdfs:label "temporal"^^xsd:string ;
+      rdfs:range dpn:TimeInterval .
+
+wl:FunctionalClassificationRoot
+      rdf:type rdfs:Class ;
+      rdfs:subClassOf rdfs:Class .
+
+wl:Service
+      rdf:type owl:Class ;
+      rdfs:label "WSMO Lite service description"^^xsd:string ;
+      rdfs:subClassOf owl:Thing ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty dpn:serviceEndpoint ;
+                owl:someValuesFrom rdfs:Resource
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty dpn:implements ;
+                owl:someValuesFrom dpn:ServiceInterface
+              ] .

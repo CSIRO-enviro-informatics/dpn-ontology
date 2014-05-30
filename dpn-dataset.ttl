@@ -1,0 +1,131 @@
+# baseURI: http://purl.org/dpn/dataset
+
+@prefix :        <http://purl.org/dpn/dataset#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix ds:     <http://purl.org/dpn/dataset#> .
+@prefix dc:      <http://purl.org/dc/terms/> .
+
+<http://purl.org/dpn/dataset>
+      rdf:type owl:Ontology ;
+       owl:imports <http://environment.data.gov.au/water/quality/def/op> , <http://www.w3.org/2003/01/geo/wgs84_pos>;
+      owl:versionInfo "Created with TopBraid Composer"^^xsd:string .
+
+ds:BoundingBox
+      rdf:type owl:Class ;
+      rdfs:label "Bounding box"^^xsd:string ;
+      rdfs:subClassOf <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty ds:bbBottomRight ;
+                owl:someValuesFrom <http://www.w3.org/2003/01/geo/wgs84_pos#Point>
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty ds:bbTopLeft ;
+                owl:someValuesFrom <http://www.w3.org/2003/01/geo/wgs84_pos#Point>
+              ] .
+
+			  
+ds:Dataset
+      rdf:type owl:Class ;
+      rdfs:subClassOf owl:Thing ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:allValuesFrom ds:Observation ;
+                owl:onProperty ds:relatedObservationType
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty ds:spatial ;
+                owl:someValuesFrom <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing>
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty ds:temporal ;
+                owl:someValuesFrom ds:TimeInterval
+              ] ;
+      owl:equivalentClass <http://www.w3.org/ns/dcat#Dataset> .
+
+	  
+ds:Observation
+      rdf:type rdfs:Class ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty ds:relatedFeature ;
+                owl:someValuesFrom rdfs:Resource
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty ds:relatedSubstanceOrTaxon ;
+                owl:someValuesFrom <http://environment.data.gov.au/water/quality/def/op#SubstanceOrTaxon>
+              ] ;
+      rdfs:subClassOf
+              [ rdf:type owl:Restriction ;
+                owl:onProperty ds:relatedQuantityKind ;
+                owl:someValuesFrom <http://environment.data.gov.au/water/quality/def/op#ScaledQuantityKind>
+              ] .
+			  
+			  
+ds:TimeInterval
+      rdf:type rdfs:Class ;
+      rdfs:label "Time interval"^^xsd:string ;
+      rdfs:subClassOf dc:PeriodOfTime .
+
+	  
+#properties
+	  
+ds:bbBottomRight
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+      rdfs:label "bb bottom right"^^xsd:string ;
+      rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#Point> .
+
+ds:bbTopLeft
+      rdf:type owl:ObjectProperty ;
+      rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+      rdfs:label "bb top left"^^xsd:string ;
+      rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#Point> .
+	  
+	  
+ds:end
+      rdf:type owl:DatatypeProperty ;
+      rdfs:label "end"^^xsd:string ;
+      rdfs:range xsd:dateTime .
+	  
+	  
+ds:relatedFeature
+      rdf:type owl:ObjectProperty ;
+      rdfs:label "Related Feature Of Interest that the dataset describes"^^xsd:string .
+
+ds:relatedObservationType
+      rdf:type owl:ObjectProperty ;
+      rdfs:range ds:Observation .
+
+ds:relatedQuantityKind
+      rdf:type owl:ObjectProperty ;
+      rdfs:label "Related Quantity Kind that the dataset describes"^^xsd:string .
+
+ds:relatedSubstanceOrTaxon
+      rdf:type owl:ObjectProperty ;
+      rdfs:label "Related Substance of Taxon that the dataset describes"^^xsd:string .
+
+	  
+ds:spatial
+      rdf:type owl:ObjectProperty ;
+      rdfs:label "spatial"^^xsd:string ;
+      rdfs:range ds:BoundingBox ;
+      rdfs:subPropertyOf dc:spatial .
+
+ds:start
+      rdf:type owl:DatatypeProperty ;
+      rdfs:label "start"^^xsd:string ;
+      rdfs:range xsd:dateTime .
+
+ds:temporal
+      rdf:type owl:ObjectProperty ;
+      rdfs:label "temporal"^^xsd:string ;
+      rdfs:range ds:TimeInterval .
+      
