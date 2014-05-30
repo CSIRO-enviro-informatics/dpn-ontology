@@ -4,142 +4,183 @@
     xmlns:ds="http://purl.org/dpn/dataset#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:dc="http://purl.org/dc/terms/"
+    xmlns:j.0="http://purl.org/dc/elements/1.1/"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://purl.org/dpn/dataset">
   <owl:Ontology rdf:about="">
-    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Created with TopBraid Composer</owl:versionInfo>
     <owl:imports rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos"/>
+    <owl:versionIRI rdf:resource="http://purl.org/dpn/dataset/v0.1"/>
+    <j.0:rights rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Copyright 2014 CSIRO.</j.0:rights>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >This ontology is being developed by CSIRO under the eReefs project for describing datasets, such as observational datasets. It imports the observable properties ontology which allows description of feature, substance or taxon, and quantity kinds.</rdfs:comment>
+    <dc:license rdf:resource="http://creativecommons.org/licenses/by/3.0/"/>
     <owl:imports rdf:resource="http://environment.data.gov.au/water/quality/def/op"/>
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >v 0.1 19/02/2014</owl:versionInfo>
+    <j.0:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Jonathan Yu. CSIRO.</j.0:creator>
+    <j.0:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dataset ontology</j.0:title>
+    <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2014-01-01</dc:created>
+    <dc:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2014-02-19</dc:modified>
   </owl:Ontology>
   <rdfs:Class rdf:ID="TimeInterval">
-    <rdfs:subClassOf rdf:resource="http://purl.org/dc/terms/PeriodOfTime"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Time interval</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dc/terms/PeriodOfTime"/>
   </rdfs:Class>
   <rdfs:Class rdf:ID="Observation">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Observation</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A description of an observation. In the context of observational data, we have defined observations may relate to a feature, some substance or taxon and/or a quantity kind.</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://environment.data.gov.au/water/quality/def/op#ScaledQuantityKind"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="relatedQuantityKind"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://environment.data.gov.au/water/quality/def/op#SubstanceOrTaxon"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="relatedSubstanceOrTaxon"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="relatedFeature"/>
         </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="relatedSubstanceOrTaxon"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://environment.data.gov.au/water/quality/def/op#SubstanceOrTaxon"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="relatedQuantityKind"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://environment.data.gov.au/water/quality/def/op#ScaledQuantityKind"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </rdfs:Class>
   <owl:Class rdf:ID="Dataset">
-    <owl:equivalentClass rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dataset</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Dataset in this context is defined as observational data relating to some observations. We have defined this also as optionally having spatial and/or temporal properties.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#TimeInterval"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="temporal"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="spatial"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="#Observation"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="relatedObservationType"/>
         </owl:onProperty>
-        <owl:allValuesFrom rdf:resource="#Observation"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="spatial"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="temporal"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#TimeInterval"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
   </owl:Class>
   <owl:Class rdf:ID="BoundingBox">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A geospatial bounding box.</rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Bounding box</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#Point"/>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="bbTopLeft"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#Point"/>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="bbBottomRight"/>
         </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#Point"/>
       </owl:Restriction>
     </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Bounding box</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="bbTopLeft"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#Point"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:ObjectProperty rdf:about="#relatedObservationType">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >related observation type</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Related observation type</rdfs:comment>
     <rdfs:range rdf:resource="#Observation"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#spatial">
-    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/spatial"/>
-    <rdfs:range rdf:resource="#BoundingBox"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >specialisation of the spatial relationship with range restriction applicable for the dataset ontology</rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >spatial</rdfs:label>
+    <rdfs:range rdf:resource="#BoundingBox"/>
+    <rdfs:subPropertyOf rdf:resource="http://purl.org/dc/terms/spatial"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#relatedSubstanceOrTaxon">
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Related Substance of Taxon that the dataset describes</rdfs:label>
+    >related substance or taxon</rdfs:label>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#temporal">
-    <rdfs:range rdf:resource="#TimeInterval"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >temporal property with range restriction to temporal descriptions applicable for the dataset ontology (currently time interval)</rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >temporal</rdfs:label>
+    <rdfs:range rdf:resource="#TimeInterval"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#relatedQuantityKind">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >related quantity kind</rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Related Quantity Kind that the dataset describes</rdfs:label>
+    >related quantity kind</rdfs:label>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#bbBottomRight">
-    <rdfs:range rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#Point"/>
+    <rdfs:domain rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >bb bottom right</rdfs:label>
-    <rdfs:domain rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#Point"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#bbTopLeft">
-    <rdfs:range rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#Point"/>
+    <rdfs:domain rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >bb top left</rdfs:label>
-    <rdfs:domain rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#Point"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#relatedFeature">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >related feature of interest</rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Related Feature Of Interest that the dataset describes</rdfs:label>
+    >related feature</rdfs:label>
   </owl:ObjectProperty>
   <owl:DatatypeProperty rdf:ID="start">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >start date time</rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >start</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
   </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:ID="end">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >End date time</rdfs:comment>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >end</rdfs:label>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
   </owl:DatatypeProperty>
 </rdf:RDF>
 
