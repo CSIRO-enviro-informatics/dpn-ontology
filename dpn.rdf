@@ -135,10 +135,12 @@
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="#Service"/>
+        </owl:someValuesFrom>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="hasImplementation"/>
         </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="http://www.wsmo.org/ns/wsmo-lite#Service"/>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -182,12 +184,12 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="IdentifierService">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Persistent Identifier Service allows registry and deferencing identifier handles.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Service"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Persistent Identifier Service</rdfs:label>
     <rdfs:seeAlso rdf:resource="https://www.seegrid.csiro.au/wiki/Siss/PIDService"/>
-    <rdfs:subClassOf rdf:resource="http://www.wsmo.org/ns/wsmo-lite#Service"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Persistent Identifier Service allows registry and deferencing identifier handles.</rdfs:comment>
   </owl:Class>
   <owl:ObjectProperty rdf:about="#implements">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
