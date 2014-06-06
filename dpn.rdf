@@ -13,7 +13,6 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://purl.org/dpn">
   <owl:Ontology rdf:about="">
-    <owl:imports rdf:resource="http://www.w3.org/ns/dcat"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >This ontology is being developed by CSIRO under the eReefs project for describing data provider nodes, web services available and datasets that are hosted by them. This ontology features a module for describing Datasets. It does not however describe geospatial, temporal, organisational or domain concepts as these are intended to be included from other ontologies via the imports statement.</rdfs:comment>
     <owl:imports rdf:resource="http://www.w3.org/ns/org"/>
@@ -22,6 +21,10 @@
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >v 0.2 29/05/2014 Jonathan Yu</owl:versionInfo>
   </owl:Ontology>
+  <owl:Class rdf:ID="Catalog">
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Catalog</rdfs:label>
+  </owl:Class>
   <owl:Class rdf:ID="InfoModelServiceInterface">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >An abstract interface for information model services</rdfs:comment>
@@ -142,7 +145,6 @@
     <rdfs:subClassOf rdf:resource="#ServiceInterface"/>
   </owl:Class>
   <owl:Class rdf:about="#Service">
-    <owl:disjointWith rdf:resource="http://www.w3.org/ns/dcat#Catalog"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -161,17 +163,18 @@
     </rdfs:subClassOf>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Web Service</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="catalog"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
     <owl:disjointWith rdf:resource="http://www.w3.org/ns/org#Organization"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Lightweight description for a Web Service.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#Catalog"/>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="catalog"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Catalog"/>
     <owl:disjointWith rdf:resource="#Node"/>
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
@@ -218,15 +221,15 @@
     >hosts node</rdfs:label>
     <rdfs:range rdf:resource="#Node"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#providesServiceInterface">
-    <rdfs:range rdf:resource="#ServiceInterface"/>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#endpoint">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Property to associate a resource with a resolvable endpoint URL. e.g. to a URL of a catalog or a GetCapabilities description.</rdfs:comment>
     <rdfs:domain rdf:resource="#Service"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >endpoint</rdfs:label>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#providesServiceInterface">
+    <rdfs:range rdf:resource="#ServiceInterface"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#exposesService">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
