@@ -1,8 +1,8 @@
 @prefix dc: <http://purl.org/dc/terms/> .
+@prefix dc-elem: <http://purl.org/dc/elements/1.1/> .
 @prefix dpn: <http://purl.org/dpn#> .
 @prefix ds: <http://purl.org/dpn/dataset#> .
 @prefix hr: <http://www.wsmo.org/ns/hrests#> .
-@prefix j.0: <http://purl.org/dc/elements/1.1/> .
 @prefix msm: <http://iserve.kmi.open.ac.uk/ns/msm#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -12,17 +12,8 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <http://purl.org/dpn> a owl:Ontology ;
-    j.0:creator "Jonathan Yu. CSIRO"^^xsd:string ;
-    j.0:rights "Copyright 2014 CSIRO."^^xsd:string ;
-    j.0:title "Data Provider Node ontology"^^xsd:string ;
-    dc:created "2014-01-01"^^xsd:string ;
-    dc:license <http://creativecommons.org/licenses/by/3.0/> ;
-    dc:modified "2014-05-29"^^xsd:string ;
     rdfs:comment "This ontology is being developed by CSIRO under the eReefs project for describing data provider nodes, web services available and datasets that are hosted by them. This ontology features a module for describing Datasets. It does not however describe geospatial, temporal, organisational or domain concepts as these are intended to be included from other ontologies via the imports statement."^^xsd:string ;
-    owl:imports <http://environment.data.gov.au/water/quality/def/op>,
-        <http://purl.org/dpn/dataset>,
-        <http://www.w3.org/2003/01/geo/wgs84_pos>,
-        <http://www.w3.org/2004/02/skos/core>,
+    owl:imports <http://purl.org/dpn/dataset>,
         <http://www.w3.org/ns/dcat>,
         <http://www.w3.org/ns/org> ;
     owl:versionIRI <http://purl.org/dpn/v0.2> ;
@@ -42,7 +33,7 @@ dpn:IdentifierService a owl:Class ;
     rdfs:label "Persistent Identifier Service"^^xsd:string ;
     rdfs:comment "Persistent Identifier Service allows registry and deferencing identifier handles."^^xsd:string ;
     rdfs:seeAlso <https://www.seegrid.csiro.au/wiki/Siss/PIDService> ;
-    rdfs:subClassOf wl:Service .
+    rdfs:subClassOf dpn:Service .
 
 dpn:LinkedDataApiOperation a owl:Class ;
     rdfs:label "Linked Data API Operation"^^xsd:string ;
@@ -91,16 +82,6 @@ dpn:InfoModelServiceInterface a owl:Class ;
 
 dpn:JSON a wl:Message .
 
-dpn:Node a owl:Class ;
-    rdfs:label "Data provider node"^^xsd:string ;
-    rdfs:comment "A data provider node is a class of things that exposes concrete service implementations and/or describes a number of service interfaces that it supports. This allows discovery of services or service capabilities for a given data provider node."^^xsd:string ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty dpn:exposesService ;
-            owl:someValuesFrom dpn:Service ],
-        [ a owl:Restriction ;
-            owl:onProperty dpn:providesServiceInterface ;
-            owl:someValuesFrom dpn:ServiceInterface ] .
-
 dpn:RDF a wl:Message .
 
 dpn:XML a wl:Message .
@@ -122,6 +103,18 @@ dpn:exposesService a owl:ObjectProperty ;
 dpn:providesServiceInterface a owl:ObjectProperty ;
     rdfs:range dpn:ServiceInterface .
 
+dpn:Node a owl:Class ;
+    rdfs:label "Data provider node"^^xsd:string ;
+    rdfs:comment "A data provider node is a class of things that exposes concrete service implementations and/or describes a number of service interfaces that it supports. This allows discovery of services or service capabilities for a given data provider node."^^xsd:string ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty dpn:providesServiceInterface ;
+            owl:someValuesFrom dpn:ServiceInterface ],
+        [ a owl:Restriction ;
+            owl:onProperty dpn:exposesService ;
+            owl:someValuesFrom dpn:Service ] ;
+    owl:disjointWith dpn:Service,
+        <http://www.w3.org/ns/org#Organization> .
+
 dpn:hasImplementation a owl:ObjectProperty ;
     rdfs:label "has implementation"^^xsd:string ;
     rdfs:comment "This property captures the association between a service interface specification and resources that has its service implementations"^^xsd:string ;
@@ -138,22 +131,25 @@ dpn:Service a owl:Class ;
     rdfs:label "Web Service"^^xsd:string ;
     rdfs:comment "Lightweight description for a Web Service."^^xsd:string ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty dpn:endpoint ;
+            owl:onProperty dpn:catalog ;
             owl:someValuesFrom rdfs:Resource ],
         [ a owl:Restriction ;
-            owl:onProperty dpn:catalog ;
+            owl:onProperty dpn:endpoint ;
             owl:someValuesFrom rdfs:Resource ],
         [ a owl:Restriction ;
             owl:onProperty dpn:implements ;
             owl:someValuesFrom dpn:ServiceInterface ],
         owl:Thing,
-        <http://www.w3.org/ns/dcat#Distribution> .
+        <http://www.w3.org/ns/dcat#Distribution> ;
+    owl:disjointWith dpn:Node,
+        <http://www.w3.org/ns/dcat#Catalog>,
+        <http://www.w3.org/ns/org#Organization> .
 
 dpn:ServiceInterface a owl:Class ;
     rdfs:label "Service Interface Standard"^^xsd:string ;
     rdfs:comment "An abstract class for defining service interface standards"^^xsd:string ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty dpn:hasImplementation ;
-            owl:someValuesFrom wl:Service ],
+            owl:someValuesFrom dpn:Service ],
         owl:Thing .
 

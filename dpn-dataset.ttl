@@ -11,29 +11,22 @@ ds:Observation a rdfs:Class ;
     rdfs:label "Observation"^^xsd:string ;
     rdfs:comment "A description of an observation. In the context of observational data, we have defined observations may relate to a feature, some substance or taxon and/or a quantity kind."^^xsd:string ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty ds:relatedSubstanceOrTaxon ;
+            owl:someValuesFrom <http://environment.data.gov.au/def/op#SubstanceOrTaxon> ],
+        [ a owl:Restriction ;
             owl:onProperty ds:relatedFeature ;
             owl:someValuesFrom rdfs:Resource ],
         [ a owl:Restriction ;
-            owl:onProperty ds:relatedSubstanceOrTaxon ;
-            owl:someValuesFrom <http://environment.data.gov.au/water/quality/def/op#SubstanceOrTaxon> ],
-        [ a owl:Restriction ;
             owl:onProperty ds:relatedQuantityKind ;
-            owl:someValuesFrom <http://environment.data.gov.au/water/quality/def/op#ScaledQuantityKind> ] .
+            owl:someValuesFrom <http://environment.data.gov.au/def/op#ScaledQuantityKind> ] .
 
 ds:TimeInterval a rdfs:Class ;
     rdfs:label "Time interval"^^xsd:string ;
     rdfs:subClassOf dc:PeriodOfTime .
 
 <http://purl.org/dpn/dataset> a owl:Ontology ;
-    j.0:creator "Jonathan Yu. CSIRO."^^xsd:string ;
-    j.0:rights "Copyright 2014 CSIRO."^^xsd:string ;
-    j.0:title "Dataset ontology"^^xsd:string ;
-    dc:created "2014-01-01"^^xsd:string ;
-    dc:license <http://creativecommons.org/licenses/by/3.0/> ;
-    dc:modified "2014-02-19"^^xsd:string ;
     rdfs:comment "This ontology is being developed by CSIRO under the eReefs project for describing datasets, such as observational datasets. It imports the observable properties ontology which allows description of feature, substance or taxon, and quantity kinds."^^xsd:string ;
-    owl:imports <http://environment.data.gov.au/water/quality/def/op>,
-        <http://www.w3.org/2003/01/geo/wgs84_pos> ;
+    owl:imports <http://www.w3.org/2003/01/geo/wgs84_pos> ;
     owl:versionIRI <http://purl.org/dpn/dataset/v0.1> ;
     owl:versionInfo "v 0.1 19/02/2014"^^xsd:string .
 
@@ -41,14 +34,14 @@ ds:Dataset a owl:Class ;
     rdfs:label "Dataset"^^xsd:string ;
     rdfs:comment "Dataset in this context is defined as observational data relating to some observations. We have defined this also as optionally having spatial and/or temporal properties."^^xsd:string ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom ds:Observation ;
-            owl:onProperty ds:relatedObservationType ],
+            owl:onProperty ds:temporal ;
+            owl:someValuesFrom ds:TimeInterval ],
         [ a owl:Restriction ;
             owl:onProperty ds:spatial ;
             owl:someValuesFrom <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ],
         [ a owl:Restriction ;
-            owl:onProperty ds:temporal ;
-            owl:someValuesFrom ds:TimeInterval ],
+            owl:allValuesFrom ds:Observation ;
+            owl:onProperty ds:relatedObservationType ],
         owl:Thing ;
     owl:equivalentClass <http://www.w3.org/ns/dcat#Dataset> .
 
@@ -66,10 +59,10 @@ ds:BoundingBox a owl:Class ;
     rdfs:label "Bounding box"^^xsd:string ;
     rdfs:comment "A geospatial bounding box."^^xsd:string ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty ds:bbBottomRight ;
+            owl:onProperty ds:bbTopLeft ;
             owl:someValuesFrom <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ],
         [ a owl:Restriction ;
-            owl:onProperty ds:bbTopLeft ;
+            owl:onProperty ds:bbBottomRight ;
             owl:someValuesFrom <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ],
         <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
 

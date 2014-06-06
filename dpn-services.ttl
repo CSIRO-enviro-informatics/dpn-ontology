@@ -16,12 +16,6 @@ wl:FunctionalClassificationRoot a rdfs:Class ;
     rdfs:subClassOf rdfs:Class .
 
 <http://purl.org/dpn/services> a owl:Ontology ;
-    j.0:creator "Jonathan Yu. CSIRO"^^xsd:string ;
-    j.0:rights "Copyright 2014 CSIRO."^^xsd:string ;
-    j.0:title "DPN Services ontology"^^xsd:string ;
-    dc:created "2014-01-01"^^xsd:string ;
-    dc:license <http://creativecommons.org/licenses/by/3.0/> ;
-    dc:modified "2014-02-19"^^xsd:string ;
     rdfs:comment "This ontology is being developed by CSIRO under the eReefs project for describing data provider services. Populates DPN service descriptions with vocabulary items"^^xsd:string ;
     owl:imports <http://purl.org/dpn> ;
     owl:versionIRI <http://purl.org/dpn/services/v0.1> ;
@@ -34,7 +28,7 @@ dpns:GeoNetwork a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty dpn:implements ;
             owl:someValuesFrom dpns:CSW ],
-        wl:Service .
+        dpn:Service .
 
 dpns:GeoServer a owl:Class ;
     rdfs:label "GeoServer"^^xsd:string ;
@@ -43,7 +37,7 @@ dpns:GeoServer a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty dpn:implements ;
             owl:someValuesFrom dpns:WFS ],
-        wl:Service .
+        dpn:Service .
 
 dpns:HTTP a owl:Class ;
     rdfs:label "HTTP Protocol"^^xsd:string ;
@@ -61,7 +55,7 @@ dpns:MapServer a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty dpn:implements ;
             owl:someValuesFrom dpns:WMS ],
-        wl:Service .
+        dpn:Service .
 
 dpns:MessageContent_1 a msm:MessageContent .
 
@@ -86,7 +80,7 @@ dpns:PIDService a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty dpn:implements ;
             owl:someValuesFrom dpn:IdentifierService ],
-        wl:Service .
+        dpn:Service .
 
 dpns:PromsServiceInterface a owl:Class ;
     rdfs:label "PROMS Service Interface"^^xsd:string ;
@@ -103,7 +97,7 @@ dpns:SISSVocService a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:allValuesFrom dpn:LinkedDataApiOperation ;
             owl:onProperty wl:hasOperation ],
-        wl:Service .
+        dpn:Service .
 
 dpns:SISSVocServiceInterface a owl:Class ;
     rdfs:label "SISSVoc Service Interface"^^xsd:string ;
@@ -123,13 +117,17 @@ dpns:THREDDS a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onProperty dpn:implements ;
             owl:someValuesFrom dpns:WCS ],
-        wl:Service .
+        dpn:Service .
 
 dpns:ThreddsCatalog a owl:Class ;
     rdfs:label "Thredds catalog"^^xsd:string ;
     rdfs:subClassOf <http://www.w3.org/ns/dcat#Catalog> .
 
 dpns:XML a wl:Message .
+
+wl:Service a owl:Class ;
+    rdfs:label "WSMO Lite service description"^^xsd:string ;
+    rdfs:subClassOf owl:Thing .
 
 dpns:CSW a owl:Class ;
     rdfs:label "Catalogue Service for the Web"^^xsd:string ;
@@ -151,8 +149,4 @@ dpns:WMS a owl:Class ;
     rdfs:label "Web Mapping Service"^^xsd:string ;
     rdfs:seeAlso <http://www.opengeospatial.org/standards/wms> ;
     rdfs:subClassOf dpn:DataServiceInterface .
-
-wl:Service a owl:Class ;
-    rdfs:label "WSMO Lite service description"^^xsd:string ;
-    rdfs:subClassOf owl:Thing .
 
