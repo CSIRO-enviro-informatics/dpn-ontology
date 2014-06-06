@@ -59,10 +59,10 @@ ds:BoundingBox a owl:Class ;
     rdfs:label "Bounding box"^^xsd:string ;
     rdfs:comment "A geospatial bounding box."^^xsd:string ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty ds:bbTopLeft ;
+            owl:onProperty ds:bbBottomRight ;
             owl:someValuesFrom <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ],
         [ a owl:Restriction ;
-            owl:onProperty ds:bbBottomRight ;
+            owl:onProperty ds:bbTopLeft ;
             owl:someValuesFrom <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ],
         <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
 

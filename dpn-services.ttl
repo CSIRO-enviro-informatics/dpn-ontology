@@ -111,7 +111,7 @@ dpns:THREDDS a owl:Class ;
 
 dpns:ThreddsCatalog a owl:Class ;
     rdfs:label "Thredds catalog"^^xsd:string ;
-    rdfs:subClassOf <http://www.w3.org/ns/dcat#Catalog> .
+    rdfs:subClassOf dpn:Catalog .
 
 wl:Service a owl:Class ;
     rdfs:label "WSMO Lite service description"^^xsd:string ;

@@ -14,7 +14,6 @@
 <http://purl.org/dpn> a owl:Ontology ;
     rdfs:comment "This ontology is being developed by CSIRO under the eReefs project for describing data provider nodes, web services available and datasets that are hosted by them. This ontology features a module for describing Datasets. It does not however describe geospatial, temporal, organisational or domain concepts as these are intended to be included from other ontologies via the imports statement."^^xsd:string ;
     owl:imports <http://purl.org/dpn/dataset>,
-        <http://www.w3.org/ns/dcat>,
         <http://www.w3.org/ns/org> ;
     owl:versionIRI <http://purl.org/dpn/v0.2> ;
     owl:versionInfo "v 0.2 29/05/2014 Jonathan Yu"^^xsd:string .
@@ -103,15 +102,18 @@ dpn:exposesService a owl:ObjectProperty ;
 dpn:providesServiceInterface a owl:ObjectProperty ;
     rdfs:range dpn:ServiceInterface .
 
+dpn:Catalog a owl:Class ;
+    rdfs:label "Catalog"^^xsd:string .
+
 dpn:Node a owl:Class ;
     rdfs:label "Data provider node"^^xsd:string ;
     rdfs:comment "A data provider node is a class of things that exposes concrete service implementations and/or describes a number of service interfaces that it supports. This allows discovery of services or service capabilities for a given data provider node."^^xsd:string ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty dpn:providesServiceInterface ;
-            owl:someValuesFrom dpn:ServiceInterface ],
-        [ a owl:Restriction ;
             owl:onProperty dpn:exposesService ;
-            owl:someValuesFrom dpn:Service ] ;
+            owl:someValuesFrom dpn:Service ],
+        [ a owl:Restriction ;
+            owl:onProperty dpn:providesServiceInterface ;
+            owl:someValuesFrom dpn:ServiceInterface ] ;
     owl:disjointWith dpn:Service,
         <http://www.w3.org/ns/org#Organization> .
 
@@ -131,18 +133,18 @@ dpn:Service a owl:Class ;
     rdfs:label "Web Service"^^xsd:string ;
     rdfs:comment "Lightweight description for a Web Service."^^xsd:string ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onProperty dpn:catalog ;
-            owl:someValuesFrom rdfs:Resource ],
-        [ a owl:Restriction ;
             owl:onProperty dpn:endpoint ;
             owl:someValuesFrom rdfs:Resource ],
         [ a owl:Restriction ;
             owl:onProperty dpn:implements ;
             owl:someValuesFrom dpn:ServiceInterface ],
+        [ a owl:Restriction ;
+            owl:onProperty dpn:catalog ;
+            owl:someValuesFrom dpn:Catalog ],
         owl:Thing,
         <http://www.w3.org/ns/dcat#Distribution> ;
-    owl:disjointWith dpn:Node,
-        <http://www.w3.org/ns/dcat#Catalog>,
+    owl:disjointWith dpn:Catalog,
+        dpn:Node,
         <http://www.w3.org/ns/org#Organization> .
 
 dpn:ServiceInterface a owl:Class ;
