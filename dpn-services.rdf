@@ -189,12 +189,6 @@
     >THREDDS is a web server that provides metadata and data access for scientific datasets, using a variety of remote data access protocols, including OpenDAP, WMS and WCS</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://purl.org/dpn#Service"/>
   </owl:Class>
-  <wl:Message rdf:ID="RDF"/>
-  <wl:Message rdf:ID="XML"/>
-  <msm:MessageContent rdf:ID="MessageContent_1"/>
-  <wl:Message rdf:ID="Html"/>
-  <wl:Operation rdf:ID="Operation_1"/>
-  <wl:Message rdf:ID="JSON"/>
 </rdf:RDF>
 
 <!-- Created with TopBraid -->
