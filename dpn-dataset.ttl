@@ -37,11 +37,11 @@ ds:Dataset a owl:Class ;
             owl:onProperty ds:temporal ;
             owl:someValuesFrom ds:TimeInterval ],
         [ a owl:Restriction ;
-            owl:onProperty ds:spatial ;
-            owl:someValuesFrom <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ],
-        [ a owl:Restriction ;
             owl:allValuesFrom ds:Observation ;
             owl:onProperty ds:relatedObservationType ],
+        [ a owl:Restriction ;
+            owl:onProperty ds:spatial ;
+            owl:someValuesFrom <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ],
         owl:Thing ;
     owl:equivalentClass <http://www.w3.org/ns/dcat#Dataset> .
 

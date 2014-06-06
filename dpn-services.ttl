@@ -44,10 +44,6 @@ dpns:HTTP a owl:Class ;
     rdfs:comment "Hypertext Transfer Protocol"^^xsd:string ;
     rdfs:subClassOf dpn:DataServiceInterface .
 
-dpns:Html a wl:Message .
-
-dpns:JSON a wl:Message .
-
 dpns:MapServer a owl:Class ;
     rdfs:label "MapServer"^^xsd:string ;
     rdfs:comment "MapServer is an open source development environment for building spatially-enabled web mapping applications and services. It supports WMS, WFS and WCS"^^xsd:string ;
@@ -56,8 +52,6 @@ dpns:MapServer a owl:Class ;
             owl:onProperty dpn:implements ;
             owl:someValuesFrom dpns:WMS ],
         dpn:Service .
-
-dpns:MessageContent_1 a msm:MessageContent .
 
 dpns:NetcdfSubset a owl:Class,
         owl:NamedIndividual ;
@@ -70,8 +64,6 @@ dpns:OpenDAP a owl:Class ;
     rdfs:comment "OpenDAP is a data transfer protocol used widely in the earth sciences. It defines standards for structuring data, and its annotation as well as interfaces for accessing data typically through THREDDS servers often in HDF or NetCDF format. It provides functionality to retrieve subsets of data and aggregation functions as part of the API."^^xsd:string ;
     rdfs:seeAlso <http://www.opendap.org/> ;
     rdfs:subClassOf dpn:DataServiceInterface .
-
-dpns:Operation_1 a wl:Operation .
 
 dpns:PIDService a owl:Class ;
     rdfs:label "Persistent Identifier Service"^^xsd:string ;
@@ -87,8 +79,6 @@ dpns:PromsServiceInterface a owl:Class ;
     rdfs:comment "Provenance Management System (PROMS) service interface allows access to the PROMS implementation for retrieval and storage of provenance instance reports and any semantic annotations"^^xsd:string ;
     rdfs:seeAlso <https://wiki.csiro.au/display/pms/Home> ;
     rdfs:subClassOf dpn:ProvenanceServiceInterface .
-
-dpns:RDF a wl:Message .
 
 dpns:SISSVocService a owl:Class ;
     rdfs:label "SISSVoc Service"^^xsd:string ;
@@ -122,8 +112,6 @@ dpns:THREDDS a owl:Class ;
 dpns:ThreddsCatalog a owl:Class ;
     rdfs:label "Thredds catalog"^^xsd:string ;
     rdfs:subClassOf <http://www.w3.org/ns/dcat#Catalog> .
-
-dpns:XML a wl:Message .
 
 wl:Service a owl:Class ;
     rdfs:label "WSMO Lite service description"^^xsd:string ;
