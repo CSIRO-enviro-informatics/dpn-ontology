@@ -14,27 +14,13 @@
   xml:base="http://purl.org/dpn">
   <owl:Ontology rdf:about="">
     <owl:imports rdf:resource="http://www.w3.org/ns/dcat"/>
-    <dc:license rdf:resource="http://creativecommons.org/licenses/by/3.0/"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >This ontology is being developed by CSIRO under the eReefs project for describing data provider nodes, web services available and datasets that are hosted by them. This ontology features a module for describing Datasets. It does not however describe geospatial, temporal, organisational or domain concepts as these are intended to be included from other ontologies via the imports statement.</rdfs:comment>
-    <dc-elem:rights rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Copyright 2014 CSIRO.</dc-elem:rights>
     <owl:imports rdf:resource="http://www.w3.org/ns/org"/>
     <owl:imports rdf:resource="http://purl.org/dpn/dataset"/>
-    <dc:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >2014-05-29</dc:modified>
-    <owl:imports rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos"/>
-    <dc-elem:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Data Provider Node ontology</dc-elem:title>
-    <owl:imports rdf:resource="http://environment.data.gov.au/water/quality/def/op"/>
-    <owl:imports rdf:resource="http://www.w3.org/2004/02/skos/core"/>
     <owl:versionIRI rdf:resource="http://purl.org/dpn/v0.2"/>
-    <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >2014-01-01</dc:created>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >v 0.2 29/05/2014 Jonathan Yu</owl:versionInfo>
-    <dc-elem:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jonathan Yu. CSIRO</dc-elem:creator>
   </owl:Ontology>
   <owl:Class rdf:ID="InfoModelServiceInterface">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -99,6 +85,10 @@
         </owl:someValuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Service"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="http://www.w3.org/ns/org#Organization"/>
   </owl:Class>
   <owl:Class rdf:ID="MetadataServiceInterface">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -152,28 +142,7 @@
     <rdfs:subClassOf rdf:resource="#ServiceInterface"/>
   </owl:Class>
   <owl:Class rdf:about="#Service">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Lightweight description for a Web Service.</rdfs:comment>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Web Service</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="implements"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="#ServiceInterface"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:ObjectProperty rdf:ID="catalog"/>
-        </owl:onProperty>
-        <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="http://www.w3.org/ns/dcat#Catalog"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:onProperty>
@@ -182,6 +151,30 @@
         <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="implements"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="#ServiceInterface"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Web Service</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:ID="catalog"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Resource"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="http://www.w3.org/ns/org#Organization"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Lightweight description for a Web Service.</rdfs:comment>
+    <owl:disjointWith rdf:resource="#Node"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/dcat#Distribution"/>
   </owl:Class>
   <owl:Class rdf:ID="IdentifierService">
     <rdfs:subClassOf rdf:resource="#Service"/>

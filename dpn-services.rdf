@@ -17,180 +17,177 @@
     <owl:versionIRI rdf:resource="http://purl.org/dpn/services/v0.1"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >This ontology is being developed by CSIRO under the eReefs project for describing data provider services. Populates DPN service descriptions with vocabulary items</rdfs:comment>
-    <dc:license rdf:resource="http://creativecommons.org/licenses/by/3.0/"/>
-    <dc:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >2014-02-19</dc:modified>
     <owl:imports rdf:resource="http://purl.org/dpn"/>
-    <dc:created rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >2014-01-01</dc:created>
-    <j.0:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >DPN Services ontology</j.0:title>
-    <j.0:creator rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Jonathan Yu. CSIRO</j.0:creator>
     <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >v 0.1 19/02/2014 Jonathan Yu</owl:versionInfo>
-    <j.0:rights rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Copyright 2014 CSIRO.</j.0:rights>
   </owl:Ontology>
   <rdfs:Class rdf:about="http://www.wsmo.org/ns/wsmo-lite#FunctionalClassificationRoot">
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
   </rdfs:Class>
   <owl:Class rdf:ID="ThreddsCatalog">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/dcat#Catalog"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Thredds catalog</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/dcat#Catalog"/>
   </owl:Class>
   <owl:Class rdf:ID="WCS">
-    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#DataServiceInterface"/>
+    <rdfs:seeAlso rdf:resource="http://www.opengeospatial.org/standards/wcs"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Web Coverage Service</rdfs:label>
-    <rdfs:seeAlso rdf:resource="http://www.opengeospatial.org/standards/wcs"/>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#DataServiceInterface"/>
   </owl:Class>
   <owl:Class rdf:ID="SISSVocServiceInterface">
-    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#VocabularyServiceInterface"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >SISSVoc Service Interface definition</rdfs:comment>
+    <rdfs:seeAlso rdf:resource="https://www.seegrid.csiro.au/wiki/Siss/SISSvoc30API"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >SISSVoc Service Interface</rdfs:label>
-    <rdfs:seeAlso rdf:resource="https://www.seegrid.csiro.au/wiki/Siss/SISSvoc30API"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >SISSVoc Service Interface definition</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#VocabularyServiceInterface"/>
   </owl:Class>
   <owl:Class rdf:ID="CSW">
-    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#MetadataServiceInterface"/>
-    <rdfs:seeAlso rdf:resource="http://www.opengeospatial.org/standards/csw"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Catalogue Service for the Web</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A profile of the OGC Catalog Servic</rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Catalogue Service for the Web</rdfs:label>
+    <rdfs:seeAlso rdf:resource="http://www.opengeospatial.org/standards/csw"/>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#MetadataServiceInterface"/>
   </owl:Class>
   <owl:Class rdf:ID="SISSVocService">
-    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#Service"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >SISSVoc Service</rdfs:label>
-    <rdfs:seeAlso rdf:resource="https://www.seegrid.csiro.au/wiki/Siss/VocabularyService"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://www.wsmo.org/ns/wsmo-lite#hasOperation"/>
+        <owl:allValuesFrom rdf:resource="http://purl.org/dpn#LinkedDataApiOperation"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Spatial Information Services Stack Vocabulary Service (SISSVoc) is a standard interface through which standard vocabularies can be provided to web users</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:allValuesFrom rdf:resource="http://purl.org/dpn#LinkedDataApiOperation"/>
-        <owl:onProperty rdf:resource="http://www.wsmo.org/ns/wsmo-lite#hasOperation"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <rdfs:seeAlso rdf:resource="https://www.seegrid.csiro.au/wiki/Siss/VocabularyService"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >SISSVoc Service</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#Service"/>
   </owl:Class>
   <owl:Class rdf:ID="PIDService">
-    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#Service"/>
-    <rdfs:seeAlso rdf:resource="https://www.seegrid.csiro.au/wiki/Siss/PIDService"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Persistent Identifier Service allows registry and deferencing identifier handles.</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://purl.org/dpn#implements"/>
+        <owl:someValuesFrom rdf:resource="http://purl.org/dpn#IdentifierService"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Persistent Identifier Service</rdfs:label>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="http://purl.org/dpn#IdentifierService"/>
-        <owl:onProperty rdf:resource="http://purl.org/dpn#implements"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Persistent Identifier Service allows registry and deferencing identifier handles.</rdfs:comment>
+    <rdfs:seeAlso rdf:resource="https://www.seegrid.csiro.au/wiki/Siss/PIDService"/>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#Service"/>
   </owl:Class>
   <owl:Class rdf:ID="HTTP">
-    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#DataServiceInterface"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >HTTP Protocol</rdfs:label>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Hypertext Transfer Protocol</rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >HTTP Protocol</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#DataServiceInterface"/>
   </owl:Class>
   <owl:Class rdf:ID="WMS">
-    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#DataServiceInterface"/>
+    <rdfs:seeAlso rdf:resource="http://www.opengeospatial.org/standards/wms"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Web Mapping Service</rdfs:label>
-    <rdfs:seeAlso rdf:resource="http://www.opengeospatial.org/standards/wms"/>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#DataServiceInterface"/>
   </owl:Class>
   <owl:Class rdf:ID="WFS">
-    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#DataServiceInterface"/>
+    <rdfs:seeAlso rdf:resource="http://www.opengeospatial.org/standards/wfs"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Web Feature Service</rdfs:label>
-    <rdfs:seeAlso rdf:resource="http://www.opengeospatial.org/standards/wfs"/>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#DataServiceInterface"/>
   </owl:Class>
   <owl:Class rdf:ID="GeoServer">
-    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#Service"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >GeoServer</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#WFS"/>
+        <owl:onProperty rdf:resource="http://purl.org/dpn#implements"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:seeAlso rdf:resource="http://geoserver.org/"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >GeoServer is the reference implementation of the Open Geospatial Consortium (OGC) Web Feature Service (WFS) and Web Coverage Service (WCS) standards, as well as a high performance certified compliant Web Map Service (WMS).</rdfs:comment>
-    <rdfs:seeAlso rdf:resource="http://geoserver.org/"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.org/dpn#implements"/>
-        <owl:someValuesFrom rdf:resource="#WFS"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GeoServer</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#Service"/>
   </owl:Class>
   <owl:Class rdf:ID="PromsServiceInterface">
-    <rdfs:seeAlso rdf:resource="https://wiki.csiro.au/display/pms/Home"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Provenance Management System (PROMS) service interface allows access to the PROMS implementation for retrieval and storage of provenance instance reports and any semantic annotations</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#ProvenanceServiceInterface"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >PROMS Service Interface</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#ProvenanceServiceInterface"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Provenance Management System (PROMS) service interface allows access to the PROMS implementation for retrieval and storage of provenance instance reports and any semantic annotations</rdfs:comment>
+    <rdfs:seeAlso rdf:resource="https://wiki.csiro.au/display/pms/Home"/>
   </owl:Class>
   <owl:Class rdf:ID="GeoNetwork">
-    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#Service"/>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >GeoNetwork service</rdfs:label>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#CSW"/>
+        <owl:onProperty rdf:resource="http://purl.org/dpn#implements"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:seeAlso rdf:resource="http://geonetwork-opensource.org/"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >GeoNetwork is a catalog application to manage spatially referenced resources.</rdfs:comment>
-    <rdfs:seeAlso rdf:resource="http://geonetwork-opensource.org/"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.org/dpn#implements"/>
-        <owl:someValuesFrom rdf:resource="#CSW"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >GeoNetwork service</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#Service"/>
   </owl:Class>
   <owl:Class rdf:ID="MapServer">
-    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#Service"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >MapServer is an open source development environment for building spatially-enabled web mapping applications and services. It supports WMS, WFS and WCS</rdfs:comment>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:someValuesFrom rdf:resource="#WMS"/>
+        <owl:onProperty rdf:resource="http://purl.org/dpn#implements"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:seeAlso rdf:resource="http://mapserver.org/"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >MapServer</rdfs:label>
-    <rdfs:seeAlso rdf:resource="http://mapserver.org/"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty rdf:resource="http://purl.org/dpn#implements"/>
-        <owl:someValuesFrom rdf:resource="#WMS"/>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >MapServer is an open source development environment for building spatially-enabled web mapping applications and services. It supports WMS, WFS and WCS</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#Service"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.wsmo.org/ns/wsmo-lite#Service">
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >WSMO Lite service description</rdfs:label>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
   </owl:Class>
   <owl:Class rdf:ID="OpenDAP">
-    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#DataServiceInterface"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >OpenDAP is a data transfer protocol used widely in the earth sciences. It defines standards for structuring data, and its annotation as well as interfaces for accessing data typically through THREDDS servers often in HDF or NetCDF format. It provides functionality to retrieve subsets of data and aggregation functions as part of the API.</rdfs:comment>
+    <rdfs:seeAlso rdf:resource="http://www.opendap.org/"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >OpenDAP</rdfs:label>
-    <rdfs:seeAlso rdf:resource="http://www.opendap.org/"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >OpenDAP is a data transfer protocol used widely in the earth sciences. It defines standards for structuring data, and its annotation as well as interfaces for accessing data typically through THREDDS servers often in HDF or NetCDF format. It provides functionality to retrieve subsets of data and aggregation functions as part of the API.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#DataServiceInterface"/>
+  </owl:Class>
+  <owl:Class rdf:ID="NetcdfSubset">
+    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#DataServiceInterface"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >A NetCDF subset dataset</rdfs:comment>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >NetCDF Subset</rdfs:label>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
   </owl:Class>
   <owl:Class rdf:ID="SOS">
-    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#DataServiceInterface"/>
+    <rdfs:seeAlso rdf:resource="http://www.opengeospatial.org/standards/sos"/>
     <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Sensor Observation Service</rdfs:label>
-    <rdfs:seeAlso rdf:resource="http://www.opengeospatial.org/standards/sos"/>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#DataServiceInterface"/>
   </owl:Class>
   <owl:Class rdf:ID="THREDDS">
-    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#Service"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >THREDDS is a web server that provides metadata and data access for scientific datasets, using a variety of remote data access protocols, including OpenDAP, WMS and WCS</rdfs:comment>
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >THREDDS Data Server</rdfs:label>
-    <rdfs:seeAlso rdf:resource="https://www.unidata.ucar.edu/software/thredds/current/tds/"/>
     <rdfs:subClassOf>
       <owl:Restriction>
-        <owl:someValuesFrom rdf:resource="#WCS"/>
         <owl:onProperty rdf:resource="http://purl.org/dpn#implements"/>
+        <owl:someValuesFrom rdf:resource="#WCS"/>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:seeAlso rdf:resource="https://www.unidata.ucar.edu/software/thredds/current/tds/"/>
+    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >THREDDS Data Server</rdfs:label>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >THREDDS is a web server that provides metadata and data access for scientific datasets, using a variety of remote data access protocols, including OpenDAP, WMS and WCS</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#Service"/>
   </owl:Class>
   <wl:Message rdf:ID="RDF"/>
   <wl:Message rdf:ID="XML"/>
@@ -198,14 +195,6 @@
   <wl:Message rdf:ID="Html"/>
   <wl:Operation rdf:ID="Operation_1"/>
   <wl:Message rdf:ID="JSON"/>
-  <owl:NamedIndividual rdf:ID="NetcdfSubset">
-    <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >NetCDF Subset</rdfs:label>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >A NetCDF subset dataset</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://purl.org/dpn#DataServiceInterface"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </owl:NamedIndividual>
 </rdf:RDF>
 
 <!-- Created with TopBraid -->
