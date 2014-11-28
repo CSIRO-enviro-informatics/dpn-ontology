@@ -171,7 +171,7 @@ dpn:endpoint
 .
 dpn:exposesService
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "This property allows a resource to specify the services that it exposes. e.g. a Data provider node may expose a data service."^^xsd:string ;
+  rdfs:comment "This property allows a resource to specify the services that it exposes. e.g. a Data provider node may expose a data service. The complement of this could be dpn:node to specify a Service's data provider node"^^xsd:string ;
   rdfs:label "exposes service"^^xsd:string ;
   rdfs:range dpn:Service ;
 .
@@ -242,6 +242,18 @@ dpn:owns
 dpn:providesServiceInterface
   rdf:type owl:ObjectProperty ;
   rdfs:range dpn:ServiceInterface ;
+.
+dpn:related
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Property to express relationship between resources in a data provider node context"^^xsd:string ;
+  rdfs:label "related"^^xsd:string ;
+  rdfs:range rdfs:Resource ;
+.
+dpn:service
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "Property to express the related service resource"^^xsd:string ;
+  rdfs:label "service"^^xsd:string ;
+  rdfs:range dpn:Service ;
 .
 ds:Dataset
   rdfs:subClassOf [
