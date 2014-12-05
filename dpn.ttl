@@ -26,6 +26,7 @@
 .
 dpn:Catalog
   rdf:type owl:Class ;
+  rdfs:comment "A catalog is a curated set of metadata about datasets"^^xsd:string ;
   rdfs:label "Catalog"^^xsd:string ;
 .
 dpn:DataServiceInterface
@@ -33,6 +34,18 @@ dpn:DataServiceInterface
   rdfs:comment "An abstract class of data service interfaces"^^xsd:string ;
   rdfs:label "Data Service Interface"^^xsd:string ;
   rdfs:subClassOf dpn:ServiceInterface ;
+.
+dpn:Dataset
+  rdf:type owl:Class ;
+  rdfs:comment "Class to represent datasets, which are collections of data. Datasets are accessed via a means of a Distribution, e.g. via a service which can be defined as a type of distribution method or a direct download."^^xsd:string ;
+  rdfs:label "Dataset"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:allValuesFrom <http://www.w3.org/ns/dcat#Distribution> ;
+      owl:onProperty <http://www.w3.org/ns/dcat#distribution> ;
+    ] ;
+  owl:equivalentClass <http://www.w3.org/ns/dcat#Dataset> ;
 .
 dpn:FeatureTypeCatalogue
   rdf:type owl:Class ;
@@ -115,7 +128,7 @@ dpn:RDF
 .
 dpn:Service
   rdf:type owl:Class ;
-  rdfs:comment "Lightweight description for a Web Service."^^xsd:string ;
+  rdfs:comment "Lightweight description for a Web Service through which data may be accessed"^^xsd:string ;
   rdfs:label "Web Service"^^xsd:string ;
   rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf <http://www.w3.org/ns/dcat#Distribution> ;
@@ -140,7 +153,7 @@ dpn:Service
 .
 dpn:ServiceInterface
   rdf:type owl:Class ;
-  rdfs:comment "An abstract class for defining service interface standards"^^xsd:string ;
+  rdfs:comment "An abstract class for defining service interface standards for which services may implement"^^xsd:string ;
   rdfs:label "Service Interface Standard"^^xsd:string ;
   rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf [
@@ -200,7 +213,7 @@ dpn:hostsDataset
   rdfs:comment "This property allows association of a service to datasets that it hosts."^^xsd:string ;
   rdfs:domain dpn:Service ;
   rdfs:label "hosts dataset"^^xsd:string ;
-  rdfs:range ds:Dataset ;
+  rdfs:range ds:ObservationalDataset ;
 .
 dpn:hostsNode
   rdf:type owl:ObjectProperty ;
@@ -255,7 +268,8 @@ dpn:service
   rdfs:label "service"^^xsd:string ;
   rdfs:range dpn:Service ;
 .
-ds:Dataset
+ds:ObservationalDataset
+  rdfs:subClassOf dpn:Dataset ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:onProperty dpn:owner ;
