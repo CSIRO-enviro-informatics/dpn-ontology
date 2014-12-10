@@ -228,7 +228,7 @@ dpn:hostsDataset
   rdfs:comment "This property allows association of a service to datasets that it hosts."^^xsd:string ;
   rdfs:domain dpn:Service ;
   rdfs:label "hosts dataset"^^xsd:string ;
-  rdfs:range ds:ObservationalDataset ;
+  rdfs:range dpn:Dataset ;
 .
 dpn:hostsNode
   rdf:type owl:ObjectProperty ;
