@@ -1,6 +1,8 @@
 # baseURI: http://purl.org/dpn
 # imports: http://purl.org/dpn/dataset
+# imports: http://www.w3.org/2006/vcard/ns
 # imports: http://www.w3.org/ns/org
+# imports: http://xmlns.com/foaf/0.1/
 
 # c14n-version: 3
 @prefix cc: <http://creativecommons.org/ns#> .
@@ -21,18 +23,16 @@
 <http://purl.org/dpn>
   rdf:type owl:Ontology ;
   cc:license "<http://creativecommons.org/licenses/by/4.0/>"^^xsd:string ;
-  dc:creator <http://people.csiro.au/Y/J/Jonathan-Yu.aspx> ;
-  dc:issued "2014-05-30"^^xsd:string ;
-  dc:modified "2014-12-10"^^xsd:string ;
-  dc:publisher <http://people.csiro.au/Y/J/Jonathan-Yu.aspx> ;
   vann:preferredNamespacePrefix "dpn"^^xsd:string ;
   vann:preferredNamespaceUri "http://purl.org/dpn#"^^xsd:string ;
   rdfs:comment "This ontology is being developed by CSIRO under the eReefs project for describing data provider nodes, web services available and datasets that are hosted by them. This ontology features a module for describing Datasets. It does not however describe geospatial, temporal, organisational or domain concepts as these are intended to be included from other ontologies via the imports statement."^^xsd:string ;
   owl:imports <http://purl.org/dpn/dataset> ;
+  owl:imports <http://www.w3.org/2006/vcard/ns> ;
   owl:imports <http://www.w3.org/ns/org> ;
-  owl:priorVersion <http://purl.org/dpn/v0.2> ;
-  owl:versionIRI <http://purl.org/dpn/v0.3> ;
-  owl:versionInfo "v 0.3 27/11/2014 Jonathan Yu"^^xsd:string ;
+  owl:imports <http://xmlns.com/foaf/0.1/> ;
+  owl:priorVersion <http://purl.org/dpn/v0.3> ;
+  owl:versionIRI <http://purl.org/dpn/v0.4> ;
+  owl:versionInfo "v 0.4 11/03/2015 Jonathan Yu"^^xsd:string ;
 .
 dpn:Catalog
   rdf:type owl:Class ;
@@ -54,6 +54,16 @@ dpn:Dataset
       rdf:type owl:Restriction ;
       owl:allValuesFrom <http://www.w3.org/ns/dcat#Distribution> ;
       owl:onProperty <http://www.w3.org/ns/dcat#distribution> ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty dpn:hostedBy ;
+      owl:someValuesFrom <http://www.w3.org/ns/org#Organization> ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty dpn:manager ;
+      owl:someValuesFrom <http://www.w3.org/ns/org#Organization> ;
     ] ;
   owl:equivalentClass <http://www.w3.org/ns/dcat#Dataset> ;
 .
@@ -154,6 +164,11 @@ dpn:Service
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:onProperty dpn:hostsDataset ;
+      owl:someValuesFrom dpn:Dataset ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
       owl:onProperty dpn:implements ;
       owl:someValuesFrom dpn:ServiceInterface ;
     ] ;
@@ -190,6 +205,12 @@ dpn:catalog
   rdf:type owl:ObjectProperty ;
   rdfs:comment "Service may have a catalog entry, from which datasets or operations may be discovered"^^xsd:string ;
   rdfs:domain dpn:Service ;
+.
+dpn:contactPoint
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Link a resource to a relevant contact provided using VCard"^^xsd:string ;
+  rdfs:range <http://www.w3.org/2006/vcard/ns#Kind> ;
+  skos:prefLabel "contact point"^^xsd:string ;
 .
 dpn:endpoint
   rdf:type owl:ObjectProperty ;
@@ -259,7 +280,6 @@ dpn:node
   rdf:type owl:ObjectProperty ;
   rdfs:label "node"^^xsd:string ;
   rdfs:range dpn:Node ;
-  skos:prefLabel "node"^^xsd:string ;
 .
 dpn:owner
   rdf:type owl:ObjectProperty ;
@@ -296,4 +316,19 @@ ds:ObservationalDataset
       owl:onProperty dpn:owner ;
       owl:someValuesFrom rdfs:Resource ;
     ] ;
+.
+<http://www.w3.org/ns/org#Organization>
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty dpn:hostsNode ;
+      owl:someValuesFrom dpn:Node ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty dpn:owns ;
+      owl:someValuesFrom dpn:Dataset ;
+    ] ;
+.
+<http://xmlns.com/foaf/0.1/Person>
+  rdfs:subClassOf <http://www.w3.org/2006/vcard/ns#Individual> ;
 .
