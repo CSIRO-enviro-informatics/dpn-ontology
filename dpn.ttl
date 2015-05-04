@@ -23,9 +23,10 @@
 <http://purl.org/dpn>
   rdf:type owl:Ontology ;
   cc:license "<http://creativecommons.org/licenses/by/4.0/>"^^xsd:string ;
+  dc:title "Data Provider Node ontology"^^xsd:string ;
   vann:preferredNamespacePrefix "dpn"^^xsd:string ;
   vann:preferredNamespaceUri "http://purl.org/dpn#"^^xsd:string ;
-  rdfs:comment "This ontology is being developed by CSIRO under the eReefs project for describing data provider nodes, web services available and datasets that are hosted by them. This ontology features a module for describing Datasets. It does not however describe geospatial, temporal, organisational or domain concepts as these are intended to be included from other ontologies via the imports statement."^^xsd:string ;
+  rdfs:comment "This ontology is being developed by CSIRO under the eReefs project for describing data provider nodes, web services available and datasets that are hosted by them. This ontology features a module for describing Datasets. It does not however describe geospatial, temporal, organisational or domain concepts as these are intended to be included from other ontologies via the imports statement. Other modules complementary to the DPN ontology are     http://purl.org/dpn/dataset and http://purl.org/dpn/services "^^xsd:string ;
   owl:imports <http://purl.org/dpn/dataset> ;
   owl:imports <http://www.w3.org/2006/vcard/ns> ;
   owl:imports <http://www.w3.org/ns/org> ;
