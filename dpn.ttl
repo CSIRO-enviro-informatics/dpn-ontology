@@ -37,8 +37,8 @@
   owl:imports <http://www.w3.org/ns/org> ;
   owl:imports <http://xmlns.com/foaf/0.1/> ;
   owl:priorVersion <http://purl.org/dpn/v0.4> ;
-  owl:versionIRI <http://purl.org/dpn/v0.6> ;
-  owl:versionInfo "v 0.6 5/8/2015 Jonathan Yu"^^xsd:string ;
+  owl:versionIRI <http://purl.org/dpn/v0.6.1> ;
+  owl:versionInfo "v 0.6.1 5/8/2015 Jonathan Yu"^^xsd:string ;
 .
 dpn:Catalog
   rdf:type owl:Class ;
