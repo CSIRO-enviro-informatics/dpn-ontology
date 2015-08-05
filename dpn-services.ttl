@@ -19,8 +19,9 @@
   rdf:type owl:Ontology ;
   rdfs:comment "This ontology is being developed by CSIRO under the eReefs project for describing data provider services. Populates DPN service descriptions with vocabulary items"^^xsd:string ;
   owl:imports <http://purl.org/dpn> ;
-  owl:versionIRI <http://purl.org/dpn/services/v0.1> ;
-  owl:versionInfo "v 0.1 19/02/2014 Jonathan Yu"^^xsd:string ;
+  owl:priorVersion <http://purl.org/dpn/services/v0.1> ;
+  owl:versionIRI <http://purl.org/dpn/services/v0.6> ;
+  owl:versionInfo "v 0.6 5/8/2015 Jonathan Yu"^^xsd:string ;
 .
 dpns:CSW
   rdf:type owl:Class ;
