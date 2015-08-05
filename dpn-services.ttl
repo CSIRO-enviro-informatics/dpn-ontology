@@ -139,7 +139,17 @@ dpns:THREDDS
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:onProperty dpn:implements ;
+      owl:someValuesFrom dpns:OpenDAP ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty dpn:implements ;
       owl:someValuesFrom dpns:WCS ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty dpn:implements ;
+      owl:someValuesFrom dpns:WMS ;
     ] ;
 .
 dpns:WCS

@@ -321,6 +321,11 @@ ds:ObservationalDataset
 <http://www.w3.org/ns/org#Organization>
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
+      owl:onProperty dpn:contactPoint ;
+      owl:someValuesFrom <http://xmlns.com/foaf/0.1/Person> ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
       owl:onProperty dpn:hostsNode ;
       owl:someValuesFrom dpn:Node ;
     ] ;
@@ -328,6 +333,11 @@ ds:ObservationalDataset
       rdf:type owl:Restriction ;
       owl:onProperty dpn:owns ;
       owl:someValuesFrom dpn:Dataset ;
+    ] ;
+  rdfs:subClassOf [
+      rdf:type owl:Restriction ;
+      owl:onProperty <http://www.w3.org/ns/org#hasMember> ;
+      owl:someValuesFrom rdfs:Resource ;
     ] ;
 .
 <http://xmlns.com/foaf/0.1/Person>
