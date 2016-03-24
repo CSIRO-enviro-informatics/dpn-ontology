@@ -25,10 +25,14 @@
 <http://purl.org/dpn>
   rdf:type owl:Ontology ;
   cc:license "<http://creativecommons.org/licenses/by/4.0/>"^^xsd:string ;
+  dc:creator <http://people.csiro.au/Jonathan-Yu> ;
+  dc:issued "2015-05-30"^^xsd:date ;
+  dc:modified "2016-03-24"^^xsd:date ;
+  dc:publisher <http://registry.it.csiro.au/structure/org/csiro> ;
   dc:title "Data Provider Node ontology"^^xsd:string ;
   vann:preferredNamespacePrefix "dpn"^^xsd:string ;
   vann:preferredNamespaceUri "http://purl.org/dpn#"^^xsd:string ;
-  rdfs:comment "This ontology is being developed by CSIRO under the eReefs project for describing data provider nodes, web services available and datasets that are hosted by them. This ontology features a module for describing Datasets. It does not however describe geospatial, temporal, organisational or domain concepts as these are intended to be included from other ontologies via the imports statement. Other modules complementary to the DPN ontology are     http://purl.org/dpn/dataset and http://purl.org/dpn/services. This version aligns DCAT and DC terms and imports DPN services."^^xsd:string ;
+  rdfs:comment "This ontology is being developed by CSIRO for describing data provider nodes, web services available and datasets that are hosted by them. This ontology features a module for describing Datasets. It does not however describe geospatial, temporal, organisational or domain concepts as these are intended to be included from other ontologies via the imports statement. Other modules complementary to the DPN ontology are     http://purl.org/dpn/dataset and http://purl.org/dpn/services. This version aligns DCAT and DC terms and imports DPN services."^^xsd:string ;
   rdfs:label "Data Provider Node ontology"^^xsd:string ;
   owl:imports <http://purl.org/dpn/dataset> ;
   owl:imports <http://purl.org/dpn/services> ;
@@ -36,9 +40,9 @@
   owl:imports <http://www.w3.org/ns/dcat> ;
   owl:imports <http://www.w3.org/ns/org> ;
   owl:imports <http://xmlns.com/foaf/0.1/> ;
-  owl:priorVersion <http://purl.org/dpn/v0.4> ;
+  owl:priorVersion <http://purl.org/dpn/v0.6.1> ;
   owl:versionIRI <http://purl.org/dpn/v0.6.1> ;
-  owl:versionInfo "v 0.6.1 5/8/2015 Jonathan Yu"^^xsd:string ;
+  owl:versionInfo "v 0.6.2 24/3/2016 Jonathan Yu"^^xsd:string ;
 .
 dpn:Catalog
   rdf:type owl:Class ;
