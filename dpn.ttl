@@ -22,6 +22,7 @@
 @prefix wl: <http://www.wsmo.org/ns/wsmo-lite#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
 <http://purl.org/dpn>
   rdf:type owl:Ontology ;
   cc:license "<http://creativecommons.org/licenses/by/4.0/>"^^xsd:string ;
@@ -48,6 +49,7 @@ dpn:Catalog
   rdf:type owl:Class ;
   rdfs:comment "A catalog is a curated set of metadata about datasets"^^xsd:string ;
   rdfs:label "Catalog"^^xsd:string ;
+  rdfs:subClassOf <http://www.w3.org/ns/dcat#Catalog> ;
 .
 dpn:DataServiceInterface
   rdf:type owl:Class ;
@@ -57,7 +59,7 @@ dpn:DataServiceInterface
 .
 dpn:Dataset
   rdf:type owl:Class ;
-  rdfs:comment "Class to represent datasets, which are collections of data. Datasets are accessed via a means of a Distribution, e.g. via a service which can be defined as a type of distribution method or a direct download."^^xsd:string ;
+  rdfs:comment "Class to represent a dataset, which is a collections of data. A Dataset is accessed by means of a Distribution, e.g. via a service which can be defined as a type of distribution method or a direct download."^^xsd:string ;
   rdfs:label "Dataset"^^xsd:string ;
   rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf [
@@ -190,6 +192,7 @@ dpn:Service
   owl:disjointWith dpn:Catalog ;
   owl:disjointWith dpn:Node ;
   owl:disjointWith <http://www.w3.org/ns/org#Organization> ;
+  owl:equivalentClass <http://www.w3.org/ns/dcat#WebService> ;
 .
 dpn:ServiceInterface
   rdf:type owl:Class ;
@@ -215,6 +218,7 @@ dpn:contactPoint
   rdf:type owl:ObjectProperty ;
   rdfs:label "Link a resource to a relevant contact provided using VCard"^^xsd:string ;
   rdfs:range <http://www.w3.org/2006/vcard/ns#Kind> ;
+  owl:equivalentProperty <http://www.w3.org/ns/dcat#contactPoint> ;
   skos:prefLabel "contact point"^^xsd:string ;
 .
 dpn:endpoint
@@ -222,6 +226,7 @@ dpn:endpoint
   rdfs:comment "Property to associate a resource with a resolvable endpoint URL. e.g. to a URL of a catalog or a GetCapabilities description."^^xsd:string ;
   rdfs:domain dpn:Service ;
   rdfs:label "endpoint"^^xsd:string ;
+  rdfs:subPropertyOf <http://www.w3.org/ns/dcat#accessURL> ;
 .
 dpn:exposesService
   rdf:type owl:ObjectProperty ;
