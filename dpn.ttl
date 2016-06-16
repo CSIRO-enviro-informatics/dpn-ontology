@@ -47,6 +47,7 @@
   owl:priorVersion <http://purl.org/dpn/v0.6.1> ;
   owl:versionIRI <http://purl.org/dpn/v0.6.1> ;
   owl:versionInfo "v 0.6.2 24/3/2016 Jonathan Yu"^^xsd:string ;
+  skos:changeNote "Additional alignments with DCAT added by SJDC - 2016-06-16"^^xsd:string ;
 .
 dpn:Catalog
   rdf:type owl:Class ;

@@ -1,21 +1,26 @@
 # baseURI: http://purl.org/dpn/dataset
 # imports: http://www.w3.org/2003/01/geo/wgs84_pos
+# imports: http://www.w3.org/2006/time
 
-# c14n-version: 3
 @prefix dc: <http://purl.org/dc/terms/> .
 @prefix ds: <http://purl.org/dpn/dataset#> .
 @prefix j.0: <http://purl.org/dc/elements/1.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix time: <http://www.w3.org/2006/time#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
 <http://purl.org/dpn/dataset>
   rdf:type owl:Ontology ;
   rdfs:comment "This ontology is being developed by CSIRO under the eReefs project for describing datasets, such as observational datasets. It imports the observable properties ontology which allows description of feature, substance or taxon, and quantity kinds."^^xsd:string ;
   owl:imports <http://www.w3.org/2003/01/geo/wgs84_pos> ;
+  owl:imports <http://www.w3.org/2006/time> ;
   owl:versionIRI <http://purl.org/dpn/dataset/v0.1> ;
   owl:versionInfo "v 0.1 19/02/2014"^^xsd:string ;
+  skos:changeNote "Additional alignment to OWL-Time added by SJDC - 2016-06-16"^^xsd:string ;
 .
 ds:BoundingBox
   rdf:type owl:Class ;
@@ -77,6 +82,7 @@ ds:TimeInterval
   rdf:type owl:Class ;
   rdfs:label "Time interval"^^xsd:string ;
   rdfs:subClassOf dc:PeriodOfTime ;
+  rdfs:subClassOf time:Interval ;
 .
 ds:bbBottomRight
   rdf:type owl:ObjectProperty ;
