@@ -1,17 +1,20 @@
 # baseURI: http://purl.org/dpn
 # imports: http://purl.org/dpn/dataset
 # imports: http://purl.org/dpn/services
+# imports: http://www.w3.org/2004/02/skos/core
 # imports: http://www.w3.org/2006/vcard/ns
 # imports: http://www.w3.org/ns/dcat
 # imports: http://www.w3.org/ns/org
 # imports: http://xmlns.com/foaf/0.1/
+# prefix: dpn
 
 @prefix cc: <http://creativecommons.org/ns#> .
 @prefix dc: <http://purl.org/dc/terms/> .
 @prefix dc-elem: <http://purl.org/dc/elements/1.1/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dpn: <http://purl.org/dpn#> .
-@prefix ds: <http://purl.org/dpn/dataset#> .
+@prefix dpnd: <http://purl.org/dpn/dataset#> .
+@prefix dpns: <http://purl.org/dpn/services#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix hr: <http://www.wsmo.org/ns/hrests#> .
 @prefix msm: <http://iserve.kmi.open.ac.uk/ns/msm#> .
@@ -28,43 +31,44 @@
 
 <http://purl.org/dpn>
   rdf:type owl:Ontology ;
-  cc:license "<http://creativecommons.org/licenses/by/4.0/>"^^xsd:string ;
+  cc:license "<http://creativecommons.org/licenses/by/4.0/>" ;
   dc:creator <http://people.csiro.au/Jonathan-Yu> ;
   dc:issued "2015-05-30"^^xsd:date ;
   dc:modified "2016-03-24"^^xsd:date ;
   dc:publisher <http://registry.it.csiro.au/structure/org/csiro> ;
-  dc:title "Data Provider Node ontology"^^xsd:string ;
-  vann:preferredNamespacePrefix "dpn"^^xsd:string ;
-  vann:preferredNamespaceUri "http://purl.org/dpn#"^^xsd:string ;
-  rdfs:comment "This ontology is being developed by CSIRO for describing data provider nodes, web services available and datasets that are hosted by them. This ontology features a module for describing Datasets. It does not however describe geospatial, temporal, organisational or domain concepts as these are intended to be included from other ontologies via the imports statement. Other modules complementary to the DPN ontology are     http://purl.org/dpn/dataset and http://purl.org/dpn/services. This version aligns DCAT and DC terms and imports DPN services."^^xsd:string ;
-  rdfs:label "Data Provider Node ontology"^^xsd:string ;
+  dc:title "Data Provider Node ontology" ;
+  vann:preferredNamespacePrefix "dpn" ;
+  vann:preferredNamespaceUri "http://purl.org/dpn#" ;
+  rdfs:comment "This ontology is being developed by CSIRO for describing data provider nodes, web services available and datasets that are hosted by them. This ontology features a module for describing Datasets. It does not however describe geospatial, temporal, organisational or domain concepts as these are intended to be included from other ontologies via the imports statement. Other modules complementary to the DPN ontology are     http://purl.org/dpn/dataset and http://purl.org/dpn/services. This version aligns DCAT and DC terms and imports DPN services." ;
+  rdfs:label "Data Provider Node ontology" ;
   owl:imports <http://purl.org/dpn/dataset> ;
   owl:imports <http://purl.org/dpn/services> ;
+  owl:imports <http://www.w3.org/2004/02/skos/core> ;
   owl:imports <http://www.w3.org/2006/vcard/ns> ;
   owl:imports <http://www.w3.org/ns/dcat> ;
   owl:imports <http://www.w3.org/ns/org> ;
   owl:imports foaf: ;
   owl:priorVersion <http://purl.org/dpn/v0.6.1> ;
   owl:versionIRI <http://purl.org/dpn/v0.6.1> ;
-  owl:versionInfo "v 0.6.2 24/3/2016 Jonathan Yu"^^xsd:string ;
-  skos:changeNote "Additional alignments with DCAT added by SJDC - 2016-06-16"^^xsd:string ;
+  owl:versionInfo "v 0.6.2 24/3/2016 Jonathan Yu" ;
+  skos:changeNote "Additional alignments with DCAT added by SJDC - 2016-06-16" ;
 .
 dpn:Catalog
   rdf:type owl:Class ;
-  rdfs:comment "A catalog is a curated set of metadata about datasets"^^xsd:string ;
-  rdfs:label "Catalog"^^xsd:string ;
+  rdfs:comment "A catalog is a curated set of metadata about datasets" ;
+  rdfs:label "Catalog" ;
   rdfs:subClassOf dcat:Catalog ;
 .
 dpn:DataServiceInterface
   rdf:type owl:Class ;
-  rdfs:comment "An abstract class of data service interfaces"^^xsd:string ;
-  rdfs:label "Data Service Interface"^^xsd:string ;
+  rdfs:comment "An abstract class of data service interfaces" ;
+  rdfs:label "Data Service Interface" ;
   rdfs:subClassOf dpn:ServiceInterface ;
 .
 dpn:Dataset
   rdf:type owl:Class ;
-  rdfs:comment "Class to represent a dataset, which is a collections of data. A Dataset is accessed by means of a Distribution, e.g. via a service which can be defined as a type of distribution method or a direct download."^^xsd:string ;
-  rdfs:label "Dataset"^^xsd:string ;
+  rdfs:comment "Class to represent a dataset, which is a collections of data. A Dataset is accessed by means of a Distribution, e.g. via a service which can be defined as a type of distribution method or a direct download." ;
+  rdfs:label "Dataset" ;
   rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -85,8 +89,8 @@ dpn:Dataset
 .
 dpn:FeatureTypeCatalogue
   rdf:type owl:Class ;
-  rdfs:comment "A Feature Type Catalogue (FTC) gives an informative overview of the spatial object types (features) and data types. Generally an FTC implements a registry of feature types which allow features to be described."^^xsd:string ;
-  rdfs:label "Feature Type Catalogue"^^xsd:string ;
+  rdfs:comment "A Feature Type Catalogue (FTC) gives an informative overview of the spatial object types (features) and data types. Generally an FTC implements a registry of feature types which allow features to be described." ;
+  rdfs:label "Feature Type Catalogue" ;
   rdfs:subClassOf dpn:InfoModelServiceInterface ;
 .
 dpn:Html
@@ -94,15 +98,15 @@ dpn:Html
 .
 dpn:IdentifierService
   rdf:type owl:Class ;
-  rdfs:comment "Persistent Identifier Service allows registry and deferencing identifier handles."^^xsd:string ;
-  rdfs:label "Persistent Identifier Service"^^xsd:string ;
+  rdfs:comment "Persistent Identifier Service allows registry and deferencing identifier handles." ;
+  rdfs:label "Persistent Identifier Service" ;
   rdfs:seeAlso <https://www.seegrid.csiro.au/wiki/Siss/PIDService> ;
   rdfs:subClassOf dpn:Service ;
 .
 dpn:InfoModelServiceInterface
   rdf:type owl:Class ;
-  rdfs:comment "An abstract interface for information model services"^^xsd:string ;
-  rdfs:label "Information Model Service Interface"^^xsd:string ;
+  rdfs:comment "An abstract interface for information model services" ;
+  rdfs:label "Information Model Service Interface" ;
   rdfs:subClassOf dpn:ServiceInterface ;
 .
 dpn:JSON
@@ -110,8 +114,8 @@ dpn:JSON
 .
 dpn:LinkedDataApiOperation
   rdf:type owl:Class ;
-  rdfs:comment "Description of a Linked Data API operation"^^xsd:string ;
-  rdfs:label "Linked Data API Operation"^^xsd:string ;
+  rdfs:comment "Description of a Linked Data API operation" ;
+  rdfs:label "Linked Data API Operation" ;
   rdfs:subClassOf wl:Operation ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
@@ -132,14 +136,14 @@ dpn:MessageContent_1
 .
 dpn:MetadataServiceInterface
   rdf:type owl:Class ;
-  rdfs:comment "An abstract interface for metadata services"^^xsd:string ;
-  rdfs:label "Metadata Service Interface"^^xsd:string ;
+  rdfs:comment "An abstract interface for metadata services" ;
+  rdfs:label "Metadata Service Interface" ;
   rdfs:subClassOf dpn:ServiceInterface ;
 .
 dpn:Node
   rdf:type owl:Class ;
-  rdfs:comment "A data provider node is a class of things that exposes concrete service implementations and/or describes a number of service interfaces that it supports. This allows discovery of services or service capabilities for a given data provider node."^^xsd:string ;
-  rdfs:label "Data provider node"^^xsd:string ;
+  rdfs:comment "A data provider node is a class of things that exposes concrete service implementations and/or describes a number of service interfaces that it supports. This allows discovery of services or service capabilities for a given data provider node." ;
+  rdfs:label "Data provider node" ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:onProperty dc:publisher ;
@@ -157,11 +161,12 @@ dpn:Node
     ] ;
   owl:disjointWith dpn:Service ;
   owl:disjointWith org:Organization ;
+  skos:example "Example of a member of the class?" ;
 .
 dpn:ProvenanceServiceInterface
   rdf:type owl:Class ;
-  rdfs:comment "An abstract interface for provenance services"^^xsd:string ;
-  rdfs:label "Provenance Service Interface"^^xsd:string ;
+  rdfs:comment "An abstract interface for provenance services" ;
+  rdfs:label "Provenance Service Interface" ;
   rdfs:subClassOf dpn:ServiceInterface ;
 .
 dpn:RDF
@@ -169,8 +174,9 @@ dpn:RDF
 .
 dpn:Service
   rdf:type owl:Class ;
-  rdfs:comment "Lightweight description for a Web Service through which data may be accessed"^^xsd:string ;
-  rdfs:label "Web Service"^^xsd:string ;
+  rdfs:comment "Lightweight description for a Web Service through which data may be accessed" ;
+  rdfs:comment "Simon asks: Is this 'service implementation' (e.g. GeoServer) or 'service endpoint' (e.g. a deployment of GeoServer for a specific dataset) - is the latter dpn:Node?" ;
+  rdfs:label "Web Service" ;
   rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf dcat:Distribution ;
   rdfs:subClassOf [
@@ -196,23 +202,27 @@ dpn:Service
   owl:disjointWith dpn:Catalog ;
   owl:disjointWith dpn:Node ;
   owl:disjointWith org:Organization ;
-  owl:equivalentClass dcat:WebService ;
+  owl:versionInfo """Remove 
+        dpn:service owl:equivalentClass dcat:WebService . 
+since the latter is officially deprecated""" ;
+  skos:example "Example of a member of the class?" ;
 .
 dpn:ServiceInterface
   rdf:type owl:Class ;
-  rdfs:comment "An abstract class for defining service interface standards for which services may implement"^^xsd:string ;
-  rdfs:label "Service Interface Standard"^^xsd:string ;
+  rdfs:comment "An abstract class for defining service interface standards for which services may implement" ;
+  rdfs:label "Service Interface Standard" ;
   rdfs:subClassOf owl:Thing ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
       owl:onProperty dpn:hasImplementation ;
       owl:someValuesFrom dpn:Service ;
     ] ;
+  skos:example "Example of a member of the class?" ;
 .
 dpn:VocabularyServiceInterface
   rdf:type owl:Class ;
-  rdfs:comment "An abstract interface or API for a vocabulary service, which typically hosts a set of well-governed controlled vocabularies."^^xsd:string ;
-  rdfs:label "Vocabulary Service Interface"^^xsd:string ;
+  rdfs:comment "An abstract interface or API for a vocabulary service, which typically hosts a set of well-governed controlled vocabularies." ;
+  rdfs:label "Vocabulary Service Interface" ;
   rdfs:subClassOf dpn:ServiceInterface ;
 .
 dpn:XML
@@ -220,91 +230,91 @@ dpn:XML
 .
 dpn:contactPoint
   rdf:type owl:ObjectProperty ;
-  rdfs:label "Link a resource to a relevant contact provided using VCard"^^xsd:string ;
+  rdfs:label "Link a resource to a relevant contact provided using VCard" ;
   rdfs:range vcard:Kind ;
   owl:equivalentProperty dcat:contactPoint ;
-  skos:prefLabel "contact point"^^xsd:string ;
+  skos:prefLabel "contact point" ;
 .
 dpn:endpoint
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "Property to associate a resource with a resolvable endpoint URL. e.g. to a URL of a catalog or a GetCapabilities description."^^xsd:string ;
+  rdfs:comment "Property to associate a resource with a resolvable endpoint URL. e.g. to a URL of a catalog or a GetCapabilities description." ;
   rdfs:domain dpn:Service ;
-  rdfs:label "endpoint"^^xsd:string ;
+  rdfs:label "endpoint" ;
   rdfs:subPropertyOf dcat:accessURL ;
 .
 dpn:exposesService
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "This property allows a resource to specify the services that it exposes. e.g. a Data provider node may expose a data service. The complement of this could be dpn:node to specify a Service's data provider node"^^xsd:string ;
-  rdfs:label "exposes service"^^xsd:string ;
+  rdfs:comment "This property allows a resource to specify the services that it exposes. e.g. a Data provider node may expose a data service. The complement of this could be dpn:node to specify a Service's data provider node" ;
+  rdfs:label "exposes service" ;
   rdfs:range dpn:Service ;
 .
 dpn:hasImplementation
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "This property captures the association between a service interface specification and resources that has its service implementations"^^xsd:string ;
+  rdfs:comment "This property captures the association between a service interface specification and resources that has its service implementations" ;
   rdfs:domain dpn:ServiceInterface ;
-  rdfs:label "has implementation"^^xsd:string ;
+  rdfs:label "has implementation" ;
   rdfs:range dpn:Service ;
   owl:inverseOf dpn:implements ;
 .
 dpn:hostedBy
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "Property to express the entity which hosts a given resource. This is the inverse of dpn:hosts"^^xsd:string ;
-  rdfs:label "hosted by"^^xsd:string ;
+  rdfs:comment "Property to express the entity which hosts a given resource. This is the inverse of dpn:hosts" ;
+  rdfs:label "hosted by" ;
   rdfs:range rdfs:Resource ;
 .
 dpn:hosts
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "Property to express the resource which the entity hosts. This is the inverse of dpn:hostedBy."^^xsd:string ;
-  rdfs:label "hosts"^^xsd:string ;
+  rdfs:comment "Property to express the resource which the entity hosts. This is the inverse of dpn:hostedBy." ;
+  rdfs:label "hosts" ;
   rdfs:range rdfs:Resource ;
 .
 dpn:hostsDataset
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "This property allows association of a service to datasets that it hosts."^^xsd:string ;
+  rdfs:comment "This property allows association of a service to datasets that it hosts." ;
   rdfs:domain dpn:Service ;
-  rdfs:label "hosts dataset"^^xsd:string ;
+  rdfs:label "hosts dataset" ;
   rdfs:range dpn:Dataset ;
 .
 dpn:hostsNode
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "An organisation can host a data provider node"^^xsd:string ;
+  rdfs:comment "An organisation can host a data provider node" ;
   rdfs:domain org:Organization ;
-  rdfs:label "hosts node"^^xsd:string ;
+  rdfs:label "hosts node" ;
   rdfs:range dpn:Node ;
 .
 dpn:implements
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "This property captures the association between a service and its interface specification. This is the inverse to hasImplementation."^^xsd:string ;
-  rdfs:label "implements"^^xsd:string ;
+  rdfs:comment "This property captures the association between a service and its interface specification. This is the inverse to hasImplementation." ;
+  rdfs:label "implements" ;
   owl:inverseOf dpn:hasImplementation ;
 .
 dpn:manager
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "Property to describe who the manager of the resource is."^^xsd:string ;
-  rdfs:label "manager"^^xsd:string ;
+  rdfs:comment "Property to describe who the manager of the resource is." ;
+  rdfs:label "manager" ;
   rdfs:range rdfs:Resource ;
 .
 dpn:manages
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "A property to describe what entities are managed by a resource"^^xsd:string ;
-  rdfs:label "manages"^^xsd:string ;
+  rdfs:comment "A property to describe what entities are managed by a resource" ;
+  rdfs:label "manages" ;
   rdfs:range rdfs:Resource ;
 .
 dpn:node
   rdf:type owl:ObjectProperty ;
-  rdfs:label "node"^^xsd:string ;
+  rdfs:label "node" ;
   rdfs:range dpn:Node ;
 .
 dpn:owner
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "Property to express the owner of a resource. This is the inverse to dpn:owns"^^xsd:string ;
-  rdfs:label "owner"^^xsd:string ;
+  rdfs:comment "Property to express the owner of a resource. This is the inverse to dpn:owns" ;
+  rdfs:label "owner" ;
   rdfs:range rdfs:Resource ;
 .
 dpn:owns
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "Property to express what is owned by a resource in the context of a data provider node and its datasets. This is the inverse of dpn:owner"^^xsd:string ;
-  rdfs:label "owns"^^xsd:string ;
+  rdfs:comment "Property to express what is owned by a resource in the context of a data provider node and its datasets. This is the inverse of dpn:owner" ;
+  rdfs:label "owns" ;
   rdfs:range rdfs:Resource ;
 .
 dpn:providesServiceInterface
@@ -313,17 +323,17 @@ dpn:providesServiceInterface
 .
 dpn:related
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "Property to express relationship between resources in a data provider node context"^^xsd:string ;
-  rdfs:label "related"^^xsd:string ;
+  rdfs:comment "Property to express relationship between resources in a data provider node context" ;
+  rdfs:label "related" ;
   rdfs:range rdfs:Resource ;
 .
 dpn:service
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "Property to express the related service resource"^^xsd:string ;
-  rdfs:label "service"^^xsd:string ;
+  rdfs:comment "Property to express the related service resource" ;
+  rdfs:label "service" ;
   rdfs:range dpn:Service ;
 .
-ds:ObservationalDataset
+dpnd:ObservationalDataset
   rdfs:subClassOf dpn:Dataset ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
