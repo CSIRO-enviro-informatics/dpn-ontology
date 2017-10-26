@@ -1,9 +1,10 @@
 # baseURI: http://purl.org/dpn/dataset
 # imports: http://www.w3.org/2003/01/geo/wgs84_pos
 # imports: http://www.w3.org/2006/time
+# prefix: dpnd
 
 @prefix dc: <http://purl.org/dc/terms/> .
-@prefix ds: <http://purl.org/dpn/dataset#> .
+@prefix dpnd: <http://purl.org/dpn/dataset#> .
 @prefix j.0: <http://purl.org/dc/elements/1.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -15,129 +16,129 @@
 
 <http://purl.org/dpn/dataset>
   rdf:type owl:Ontology ;
-  rdfs:comment "This ontology is being developed by CSIRO under the eReefs project for describing datasets, such as observational datasets. It imports the observable properties ontology which allows description of feature, substance or taxon, and quantity kinds."^^xsd:string ;
+  rdfs:comment "This ontology is being developed by CSIRO under the eReefs project for describing datasets, such as observational datasets. It imports the observable properties ontology which allows description of feature, substance or taxon, and quantity kinds." ;
   owl:imports <http://www.w3.org/2003/01/geo/wgs84_pos> ;
   owl:imports <http://www.w3.org/2006/time> ;
   owl:versionIRI <http://purl.org/dpn/dataset/v0.1> ;
-  owl:versionInfo "v 0.1 19/02/2014"^^xsd:string ;
-  skos:changeNote "Additional alignment to OWL-Time added by SJDC - 2016-06-16"^^xsd:string ;
+  owl:versionInfo "v 0.1 19/02/2014" ;
+  skos:changeNote "Additional alignment to OWL-Time added by SJDC - 2016-06-16" ;
 .
-ds:BoundingBox
+dpnd:BoundingBox
   rdf:type owl:Class ;
-  rdfs:comment "A geospatial bounding box."^^xsd:string ;
-  rdfs:label "Bounding box"^^xsd:string ;
+  rdfs:comment "A geospatial bounding box." ;
+  rdfs:label "Bounding box" ;
   rdfs:subClassOf <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty ds:bbBottomRight ;
+      owl:onProperty dpnd:bbBottomRight ;
       owl:someValuesFrom <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty ds:bbTopLeft ;
+      owl:onProperty dpnd:bbTopLeft ;
       owl:someValuesFrom <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ;
     ] ;
 .
-ds:Observation
+dpnd:Observation
   rdf:type owl:Class ;
-  rdfs:comment "A description of an observation. In the context of observational data, we have defined observations may relate to a feature, some substance or taxon and/or a quantity kind."^^xsd:string ;
-  rdfs:label "Observation"^^xsd:string ;
+  rdfs:comment "A description of an observation. In the context of observational data, we have defined observations may relate to a feature, some substance or taxon and/or a quantity kind." ;
+  rdfs:label "Observation" ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty ds:relatedFeature ;
+      owl:onProperty dpnd:relatedFeature ;
       owl:someValuesFrom rdfs:Resource ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty ds:relatedQuantityKind ;
+      owl:onProperty dpnd:relatedQuantityKind ;
       owl:someValuesFrom <http://environment.data.gov.au/def/op#ScaledQuantityKind> ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty ds:relatedSubstanceOrTaxon ;
+      owl:onProperty dpnd:relatedSubstanceOrTaxon ;
       owl:someValuesFrom <http://environment.data.gov.au/def/op#SubstanceOrTaxon> ;
     ] ;
 .
-ds:ObservationalDataset
+dpnd:ObservationalDataset
   rdf:type owl:Class ;
-  rdfs:comment "Dataset in this context is defined as observational data relating to some observations. We have defined this also as optionally having spatial and/or temporal properties."^^xsd:string ;
-  rdfs:label "Observational Dataset"^^xsd:string ;
+  rdfs:comment "Dataset in this context is defined as observational data relating to some observations. We have defined this also as optionally having spatial and/or temporal properties." ;
+  rdfs:label "Observational Dataset" ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:allValuesFrom ds:Observation ;
-      owl:onProperty ds:relatedObservationType ;
+      owl:allValuesFrom dpnd:Observation ;
+      owl:onProperty dpnd:relatedObservationType ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty ds:spatial ;
+      owl:onProperty dpnd:spatial ;
       owl:someValuesFrom <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty ds:temporal ;
-      owl:someValuesFrom ds:TimeInterval ;
+      owl:onProperty dpnd:temporal ;
+      owl:someValuesFrom dpnd:TimeInterval ;
     ] ;
 .
-ds:TimeInterval
+dpnd:TimeInterval
   rdf:type owl:Class ;
-  rdfs:label "Time interval"^^xsd:string ;
+  rdfs:label "Time interval" ;
   rdfs:subClassOf dc:PeriodOfTime ;
   rdfs:subClassOf time:Interval ;
 .
-ds:bbBottomRight
+dpnd:bbBottomRight
   rdf:type owl:ObjectProperty ;
   rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
-  rdfs:label "bb bottom right"^^xsd:string ;
+  rdfs:label "bb bottom right" ;
   rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ;
 .
-ds:bbTopLeft
+dpnd:bbTopLeft
   rdf:type owl:ObjectProperty ;
   rdfs:domain <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
-  rdfs:label "bb top left"^^xsd:string ;
+  rdfs:label "bb top left" ;
   rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#Point> ;
 .
-ds:end
+dpnd:end
   rdf:type owl:DatatypeProperty ;
-  rdfs:comment "End date time"^^xsd:string ;
-  rdfs:label "end"^^xsd:string ;
+  rdfs:comment "End date time" ;
+  rdfs:label "end" ;
   rdfs:range xsd:dateTime ;
 .
-ds:relatedFeature
+dpnd:relatedFeature
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "related feature of interest"^^xsd:string ;
-  rdfs:label "related feature"^^xsd:string ;
+  rdfs:comment "related feature of interest" ;
+  rdfs:label "related feature" ;
 .
-ds:relatedObservationType
+dpnd:relatedObservationType
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "Related observation type"^^xsd:string ;
-  rdfs:label "related observation type"^^xsd:string ;
-  rdfs:range ds:Observation ;
+  rdfs:comment "Related observation type" ;
+  rdfs:label "related observation type" ;
+  rdfs:range dpnd:Observation ;
 .
-ds:relatedQuantityKind
+dpnd:relatedQuantityKind
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "related quantity kind"^^xsd:string ;
-  rdfs:label "related quantity kind"^^xsd:string ;
+  rdfs:comment "related quantity kind" ;
+  rdfs:label "related quantity kind" ;
 .
-ds:relatedSubstanceOrTaxon
+dpnd:relatedSubstanceOrTaxon
   rdf:type owl:ObjectProperty ;
-  rdfs:label "related substance or taxon"^^xsd:string ;
+  rdfs:label "related substance or taxon" ;
 .
-ds:spatial
+dpnd:spatial
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "specialisation of the spatial relationship with range restriction applicable for the dataset ontology"^^xsd:string ;
-  rdfs:label "spatial"^^xsd:string ;
-  rdfs:range ds:BoundingBox ;
+  rdfs:comment "specialisation of the spatial relationship with range restriction applicable for the dataset ontology" ;
+  rdfs:label "spatial" ;
+  rdfs:range dpnd:BoundingBox ;
   rdfs:subPropertyOf dc:spatial ;
 .
-ds:start
+dpnd:start
   rdf:type owl:DatatypeProperty ;
-  rdfs:comment "start date time"^^xsd:string ;
-  rdfs:label "start"^^xsd:string ;
+  rdfs:comment "start date time" ;
+  rdfs:label "start" ;
   rdfs:range xsd:dateTime ;
 .
-ds:temporal
+dpnd:temporal
   rdf:type owl:ObjectProperty ;
-  rdfs:comment "temporal property with range restriction to temporal descriptions applicable for the dataset ontology (currently time interval)"^^xsd:string ;
-  rdfs:label "temporal"^^xsd:string ;
-  rdfs:range ds:TimeInterval ;
+  rdfs:comment "temporal property with range restriction to temporal descriptions applicable for the dataset ontology (currently time interval)" ;
+  rdfs:label "temporal" ;
+  rdfs:range dpnd:TimeInterval ;
 .
