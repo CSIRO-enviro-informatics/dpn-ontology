@@ -1,0 +1,6 @@
+certifi==2017.7.27.1
+isodate==0.6.0
+lxml==4.1.0
+pyparsing==2.2.0
+rdflib==4.2.2
+six==1.11.0
