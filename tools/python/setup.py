@@ -2,7 +2,14 @@
 from __future__ import print_function
 
 import os
-from distutils.core import setup
+#from distutils.core import setup
+
+# Always prefer setuptools over distutils
+from setuptools import setup, find_packages
+# To use a consistent encoding
+from codecs import open
+from os import path
+
 
 DESCRIPTION = 'iso2dpn'
 NAME = 'iso2dpn'
@@ -20,7 +27,7 @@ def extract_description():
     return description
 
 
-setup_args = dict(
+setup(
     name=NAME,
     version='0.1',
     description=DESCRIPTION,
@@ -44,8 +51,14 @@ setup_args = dict(
         'Natural Language :: English',
         'Topic :: Scientific/Engineering',
         'Topic :: Software Development :: Libraries'],
+    entry_points={
+        'console_scripts': [
+           'iso2dpn=iso2dpn.__main__:main',
+           'cswiso2dpn=iso2dpn.cswiso2dpn:main',
+         ],
+     },
 )
 
 
-if __name__ == '__main__':
-    setup(**setup_args)
+#if __name__ == '__main__':
+   # setup(**setup_args)
