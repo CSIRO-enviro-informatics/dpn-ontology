@@ -22,9 +22,7 @@
     //var baseuri = 'http://waterinformatics-ext1-cdc.it.csiro.au/ncld'
     //var endpoint = 'http://localhost:3030/ncld/query'
     var query_ncld = function () {
-      //var endpoint = d3.select("#endpoint").property("value")
-      //var sparql = 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX bald:  <http://binary-array-ld.net/latest/> SELECT * WHERE { ?container a bald:Container .  ?container bald:contains ?contained .  ?contained a bald:Array }'
-	    var sparql = ' PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX dpn: <http://purl.org/dpn#> PREFIX dpns: <http://purl.org/dpn/services#> select * where { ?x a dpn:Service .  ?x ?y ?z } '
+	    var sparql = ' PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX dpn: <http://purl.org/dpn#> PREFIX dpns: <http://purl.org/dpn/services#> select ?srv ?st ?srvlabel ?srvvalue where { ?srv a dpn:Service .  ?srv rdfs:label ?srvlabel .  ?srv dpn:implements ?st .  ?srv dpn:endpoint ?srvvalue .  } '
 					      
 
       d3sparql.query(endpoint, sparql, render)
