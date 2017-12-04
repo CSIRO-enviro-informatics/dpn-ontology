@@ -1,0 +1,29 @@
+
+#mapid { 
+   height: 500px; 
+   width: 100%;
+}
+
+#result {
+	min-height: 600px !important ;
+	min-width: 700px !important ;
+}
+div.d3sparql.forcegraph  {
+	min-height: 600px !important ;
+	min-width: 700px !important ;
+	max-height: 600px !important ;
+	max-width: 700px !important ;
+}
+div.d3sparql.forcegraph svg  {
+	min-height: 600px !important ;
+	min-width: 700px !important ;
+	max-height: 600px !important ;
+	max-width: 700px !important ;
+}
+
+div#mapcontainer {
+	height: 600px !important ;
+	width: 700px !important ;
+}
+
+
