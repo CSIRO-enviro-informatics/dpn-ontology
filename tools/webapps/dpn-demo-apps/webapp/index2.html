@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"/></script>
+    <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script src="lib/d3/d3.v3.min.js"></script>
+    <script src="lib/d3sparql.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+        integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+	   crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+   integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+   crossorigin=""></script>
+
+    <script>
+    var endpoint = 'http://waterinformatics-ext1-cdc.it.csiro.au/fuseki1/dpn-services/query'
+    //var baseuri = 'http://waterinformatics-ext1-cdc.it.csiro.au/ncld'
+    //var endpoint = 'http://localhost:3030/ncld/query'
+    var query_ncld = function () {
+	    var sparql = ' PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX dpn: <http://purl.org/dpn#> PREFIX dpns: <http://purl.org/dpn/services#> select ?layer ?label ?serviceType ?endpoint where { ?layer a dpn:Service .  ?layer rdfs:label ?label .  ?layer dpn:implements ?serviceType .  ?layer dpn:endpoint ?endpoint .  } '
+					      
+
+      d3sparql.query(endpoint, sparql, renderTable)
+    }
+
+    function node_clicked(d) {
+		console.log(d.key)
+	    	//$('#selected').text(json)
+      		//var endpoint = 'http://localhost:3030/ncld/query'
+		var sparql = 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX bald:  <http://binary-array-ld.net/latest/> SELECT ?prop ?val WHERE { <' + d.key + '> ?prop ?val }'
+              	d3sparql.query(endpoint, sparql, render_selected)
+    }
+
+    function renderTable(json) {
+	    console.log(json)
+	     var graph = (json.head && json.results) ? d3sparql.graph(json) : json
+
+	     var config  = {
+		     "selector": "#result"
+	     }
+	     d3sparql.htmltable(json, config)
+	    console.log(graph)
+
+    }
+
+    function render(json) {
+      var config = {
+        "radius": 10,
+        "charge": -150,
+        "distance": 50,
+        "width": 800,
+        "height": 700,
+        "selector": "#result"
+      }
+      d3sparql.forcegraph(json, config, node_clicked)
+    }
+
+    function toggle() {
+      d3sparql.toggle()
+    }
+    $(function() {
+	    query_ncld();;
+    })
+    </script>
+  </head>
+  <body>
+    <div id="query" style="margin: 10px">
+      <h2>DPN Ontology example 2 :: Services</h2>
+
+      <!--
+	      <button class="btn" type="button" onclick="query_ncld()">Query</button>
+	      -->
+
+      <div class="row">
+	      <div class="col-md-8" id="result">
+	      </div>
+      </div>
+  </body>
+</html>
