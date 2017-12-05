@@ -6,28 +6,26 @@
 @prefix dpn: <http://purl.org/dpn#> .
 @prefix dpnd: <http://purl.org/dpn/dataset#> .
 @prefix dpns: <http://purl.org/dpn/services#> .
-@prefix hr: <http://www.wsmo.org/ns/hrests#> .
-@prefix j.0: <http://purl.org/dc/elements/1.1/> .
-@prefix msm: <http://iserve.kmi.open.ac.uk/ns/msm#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix wl: <http://www.wsmo.org/ns/wsmo-lite#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 <http://purl.org/dpn/services>
   rdf:type owl:Ontology ;
-  rdfs:comment "This ontology is being developed by CSIRO under the eReefs project for describing data provider services. Populates DPN service descriptions with vocabulary items" ;
+  rdfs:comment "This ontology is being developed by CSIRO (originally under the eReefs project) for describing data provider services. Populates DPN service descriptions with vocabulary items" ;
   owl:imports <http://purl.org/dpn> ;
-  owl:priorVersion <http://purl.org/dpn/services/v0.1> ;
-  owl:versionIRI <http://purl.org/dpn/services/v0.6.1> ;
-  owl:versionInfo "v 0.6.1 5/8/2015 Jonathan Yu" ;
+  owl:priorVersion <http://purl.org/dpn/services/v0.6.1> ;
+  owl:versionIRI <http://purl.org/dpn/services/v0.7.0> ;
+  owl:versionInfo "v 0.7.0 5/12/2017 Jonathan Yu" ;
 .
 dpns:CSW
   rdf:type owl:Class ;
-  rdfs:comment "A profile of the OGC Catalog Servic" ;
+  rdfs:comment "A profile of the OGC Catalog Service" ;
   rdfs:label "Catalogue Service for the Web" ;
+  skos:altLabel "CSW";
   rdfs:seeAlso <http://www.opengeospatial.org/standards/csw> ;
   rdfs:subClassOf dpn:MetadataServiceInterface ;
 .
@@ -35,6 +33,7 @@ dpns:GeoNetwork
   rdf:type owl:Class ;
   rdfs:comment "GeoNetwork is a catalog application to manage spatially referenced resources." ;
   rdfs:label "GeoNetwork service" ;
+  skos:altLabel "GeoNetwork";
   rdfs:seeAlso <http://geonetwork-opensource.org/> ;
   rdfs:subClassOf dpn:Service ;
   rdfs:subClassOf [
@@ -47,6 +46,7 @@ dpns:GeoServer
   rdf:type owl:Class ;
   rdfs:comment "GeoServer is the reference implementation of the Open Geospatial Consortium (OGC) Web Feature Service (WFS) and Web Coverage Service (WCS) standards, as well as a high performance certified compliant Web Map Service (WMS)." ;
   rdfs:label "GeoServer" ;
+  skos:altLabel "GeoServer";
   rdfs:seeAlso <http://geoserver.org/> ;
   rdfs:subClassOf dpn:Service ;
   rdfs:subClassOf [
@@ -59,12 +59,14 @@ dpns:HTTP
   rdf:type owl:Class ;
   rdfs:comment "Hypertext Transfer Protocol" ;
   rdfs:label "HTTP Protocol" ;
+  skos:altLabel "HTTP";
   rdfs:subClassOf dpn:DataServiceInterface ;
 .
 dpns:MapServer
   rdf:type owl:Class ;
   rdfs:comment "MapServer is an open source development environment for building spatially-enabled web mapping applications and services. It supports WMS, WFS and WCS" ;
   rdfs:label "MapServer" ;
+  skos:altLabel "MapServer";
   rdfs:seeAlso <http://mapserver.org/> ;
   rdfs:subClassOf dpn:Service ;
   rdfs:subClassOf [
@@ -73,17 +75,29 @@ dpns:MapServer
       owl:someValuesFrom dpns:WMS ;
     ] ;
 .
+
+dpns:ImageServer
+  rdf:type owl:Class ;
+  rdfs:comment "ArcGIS Image Server provides serving, processing, analysis, and extracting value from massive collections of imagery, rasters, and remotely sensed data. The two capabilities ArcGIS Image Server provides are described below.";
+  rdfs:label "Image Server" ;
+  skos:altLabel "Image Server";
+  rdfs:seeAlso <http://www.esri.com/arcgis/products/image-server> ;
+  rdfs:subClassOf dpn:Service ;
+.
+
 dpns:NetcdfSubset
   rdf:type owl:Class ;
   rdf:type owl:NamedIndividual ;
   rdfs:comment "A NetCDF subset dataset" ;
   rdfs:label "NetCDF Subset" ;
+  skos:altLabel "NetCDF Subset";
   rdfs:subClassOf dpn:DataServiceInterface ;
 .
 dpns:OpenDAP
   rdf:type owl:Class ;
   rdfs:comment "OpenDAP is a data transfer protocol used widely in the earth sciences. It defines standards for structuring data, and its annotation as well as interfaces for accessing data typically through THREDDS servers often in HDF or NetCDF format. It provides functionality to retrieve subsets of data and aggregation functions as part of the API." ;
   rdfs:label "OpenDAP" ;
+  skos:altLabel "OpenDAP";
   rdfs:seeAlso <http://www.opendap.org/> ;
   rdfs:subClassOf dpn:DataServiceInterface ;
 .
@@ -91,6 +105,7 @@ dpns:PIDService
   rdf:type owl:Class ;
   rdfs:comment "Persistent Identifier Service allows registry and deferencing identifier handles." ;
   rdfs:label "Persistent Identifier Service" ;
+  skos:altLabel "PID Service";
   rdfs:seeAlso <https://www.seegrid.csiro.au/wiki/Siss/PIDService> ;
   rdfs:subClassOf dpn:Service ;
   rdfs:subClassOf [
@@ -103,6 +118,7 @@ dpns:PromsServiceInterface
   rdf:type owl:Class ;
   rdfs:comment "Provenance Management System (PROMS) service interface allows access to the PROMS implementation for retrieval and storage of provenance instance reports and any semantic annotations" ;
   rdfs:label "PROMS Service Interface" ;
+  skos:altLabel "PROMS";
   rdfs:seeAlso <https://wiki.csiro.au/display/pms/Home> ;
   rdfs:subClassOf dpn:ProvenanceServiceInterface ;
 .
@@ -110,6 +126,7 @@ dpns:SISSVocService
   rdf:type owl:Class ;
   rdfs:comment "Spatial Information Services Stack Vocabulary Service (SISSVoc) is a standard interface through which standard vocabularies can be provided to web users" ;
   rdfs:label "SISSVoc Service" ;
+  skos:altLabel "SISSVoc";
   rdfs:seeAlso <https://www.seegrid.csiro.au/wiki/Siss/VocabularyService> ;
   rdfs:subClassOf dpn:Service ;
   rdfs:subClassOf [
@@ -122,12 +139,14 @@ dpns:SISSVocServiceInterface
   rdf:type owl:Class ;
   rdfs:comment "SISSVoc Service Interface definition" ;
   rdfs:label "SISSVoc Service Interface" ;
+  skos:altLabel "SISSVoc interface";
   rdfs:seeAlso <https://www.seegrid.csiro.au/wiki/Siss/SISSvoc30API> ;
   rdfs:subClassOf dpn:VocabularyServiceInterface ;
 .
 dpns:SOS
   rdf:type owl:Class ;
   rdfs:label "Sensor Observation Service" ;
+  skos:altLabel "SOS";
   rdfs:seeAlso <http://www.opengeospatial.org/standards/sos> ;
   rdfs:subClassOf dpn:DataServiceInterface ;
 .
@@ -135,6 +154,7 @@ dpns:THREDDS
   rdf:type owl:Class ;
   rdfs:comment "THREDDS is a web server that provides metadata and data access for scientific datasets, using a variety of remote data access protocols, including OpenDAP, WMS and WCS" ;
   rdfs:label "THREDDS Data Server" ;
+  skos:altLabel "THREDDS";
   rdfs:seeAlso <https://www.unidata.ucar.edu/software/thredds/current/tds/> ;
   rdfs:subClassOf dpn:Service ;
   rdfs:subClassOf [
@@ -156,27 +176,29 @@ dpns:THREDDS
 dpns:WCS
   rdf:type owl:Class ;
   rdfs:label "Web Coverage Service" ;
+  skos:altLabel "WCS";
   rdfs:seeAlso <http://www.opengeospatial.org/standards/wcs> ;
   rdfs:subClassOf dpn:DataServiceInterface ;
 .
 dpns:WFS
   rdf:type owl:Class ;
   rdfs:label "Web Feature Service" ;
+  skos:altLabel "WFS";
   rdfs:seeAlso <http://www.opengeospatial.org/standards/wfs> ;
   rdfs:subClassOf dpn:DataServiceInterface ;
 .
 dpns:WMS
   rdf:type owl:Class ;
   rdfs:label "Web Mapping Service" ;
+  skos:altLabel "WMS";
   rdfs:seeAlso <http://www.opengeospatial.org/standards/wms> ;
   rdfs:subClassOf dpn:DataServiceInterface ;
 .
-wl:FunctionalClassificationRoot
-  rdf:type rdfs:Class ;
-  rdfs:subClassOf rdfs:Class ;
-.
-wl:Service
+dpns:WMTS
   rdf:type owl:Class ;
-  rdfs:label "WSMO Lite service description" ;
-  rdfs:subClassOf owl:Thing ;
+  rdfs:label "Web Mapping Tile Service" ;
+  skos:altLabel "WMTS";
+  rdfs:seeAlso <http://www.opengeospatial.org/standards/wmts> ;
+  rdfs:subClassOf dpn:DataServiceInterface ;
 .
+
