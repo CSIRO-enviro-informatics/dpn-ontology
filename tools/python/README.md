@@ -2,20 +2,21 @@
 
 ## Installation
 
-Install requirements
-```
-$ pip install -r requirements.txt
-```
-
-or using conda...
-
+Setup virtualenv or conda environment
 ```
 $ conda env create -f environment.yml
+```
+
+Install using python setuptools
+```
+$ python setup.py install
+# enable command line tools
+$ pip install -e .
 ```
 
 ## Running iso2dpn
 
 ```
-$ python iso2dpn.py ../../examples/ga-iso19115-wfs_example_record.xml 
+$ iso2dpn
 ```
 
