@@ -48,9 +48,9 @@
   owl:imports <http://www.w3.org/ns/dcat> ;
   owl:imports <http://www.w3.org/ns/org> ;
   owl:imports foaf: ;
-  owl:priorVersion <http://purl.org/dpn/v0.6.1> ;
-  owl:versionIRI <http://purl.org/dpn/v0.6.1> ;
-  owl:versionInfo "v 0.6.2 24/3/2016 Jonathan Yu" ;
+  owl:priorVersion <http://purl.org/dpn/v0.7.1> ;
+  owl:versionIRI <http://purl.org/dpn/v0.7.2> ;
+  owl:versionInfo "v 0.7.2 19/12/2017 Jonathan Yu" ;
   skos:changeNote "Additional alignments with DCAT added by SJDC - 2016-06-16" ;
 .
 dpn:Catalog
