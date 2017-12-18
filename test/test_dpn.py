@@ -5,7 +5,7 @@ def get_dpn_ontology():
    g = Graph()
    dpnfn = "dpn.ttl"
    dpns = "dpn-services.ttl"
-   dpnd = "dpn-datasets.ttl"
+   dpnd = "dpn-dataset.ttl"
 
    g.parse(dpnfn, format='turtle' )
    g.parse(dpns, format='turtle' )
