@@ -129,11 +129,6 @@ dpns:SISSVocService
   skos:altLabel "SISSVoc";
   rdfs:seeAlso <https://www.seegrid.csiro.au/wiki/Siss/VocabularyService> ;
   rdfs:subClassOf dpn:Service ;
-  rdfs:subClassOf [
-      rdf:type owl:Restriction ;
-      owl:allValuesFrom dpn:LinkedDataApiOperation ;
-      owl:onProperty wl:hasOperation ;
-    ] ;
 .
 dpns:SISSVocServiceInterface
   rdf:type owl:Class ;
