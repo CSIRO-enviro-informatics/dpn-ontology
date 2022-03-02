@@ -5,6 +5,7 @@
 
 @prefix dc: <http://purl.org/dc/terms/> .
 @prefix dpnd: <http://purl.org/dpn/dataset#> .
+@prefix puv: <https://w3id.org/env/puv#> .
 @prefix j.0: <http://purl.org/dc/elements/1.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -41,22 +42,22 @@ dpnd:BoundingBox
 .
 dpnd:Observation
   rdf:type owl:Class ;
-  rdfs:comment "A description of an observation. In the context of observational data, we have defined observations may relate to a feature, some substance or taxon and/or a quantity kind." ;
+  rdfs:comment "A description of an observation. In the context of observational data, we have defined observations which have related properties, matrices and objects of interest." ;
   rdfs:label "Observation" ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty dpnd:relatedFeature ;
-      owl:someValuesFrom rdfs:Resource ;
+      owl:onProperty puv:ofProperty ;
+      owl:someValuesFrom puv:Property ;
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty dpnd:relatedQuantityKind ;
-      owl:someValuesFrom <http://environment.data.gov.au/def/op#ScaledQuantityKind> ;
+      owl:onProperty puv:inMatrix ;
+      owl:someValuesFrom puv:Matrix
     ] ;
   rdfs:subClassOf [
       rdf:type owl:Restriction ;
-      owl:onProperty dpnd:relatedSubstanceOrTaxon ;
-      owl:someValuesFrom <http://environment.data.gov.au/def/op#SubstanceOrTaxon> ;
+      owl:onProperty puv:hasObjectOfInterest ;
+      owl:someValuesFrom puv:Entity ;
     ] ;
 .
 dpnd:ObservationalDataset
